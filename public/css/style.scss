@@ -1,0 +1,255 @@
+@import "node_modules/plumber-sass/plumber";
+
+
+
+// Color Variables
+$brand-blue: #2D9CDB;
+$brand-green: #6FCF97;
+$brand-white: #f2f2f2;
+
+html {
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+.container {
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    margin:0;
+    padding: 0;
+    overflow-y: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+// h2 {
+//     font-family: 'Roboto', sans-serif;
+//     font-size: 1.618rem;
+//     line-height: 1.5;
+//     color: $brand-blue;
+//     margin: .5rem 0;
+// }
+// p {
+//     font-family: 'Rasa', serif;
+//     font-size: 1rem;
+//     line-height: 1.5;
+//     color: $brand-white;
+//     margin-top: .7rem;
+// }
+
+p{
+    @include plumber(
+		$grid-height: 0.5rem,
+		$baseline: 0.273,
+		$font-size: 1 * 2,
+		// $line-height: 1 * 2,
+		$leading-top: 1 * 2,
+		$leading-bottom: 1 * 2
+    );
+    font-family: 'Rasa', serif;
+    color: $brand-white;
+    line-height: 1.5;
+}
+
+strong {
+    font-weight: 600;
+    color: $brand-blue;
+}
+
+h2 {
+	@include plumber(
+		$grid-height: 0.5rem,
+		$baseline: 0.158203,
+		$font-size: 1.618 * 2,
+		$line-height: 1 * 2,
+		$leading-top: 1 * 2,
+		$leading-bottom: 1 * 2
+	);
+    font-family: 'Roboto', sans-serif;
+    color: $brand-blue;
+}
+
+button {
+    display: inline-block;
+    border-radius: 2rem;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0;
+    margin-right: .8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1111rem;
+    &.btn-primary {
+        color: $brand-green;
+        border: 2px $brand-green solid;
+        &:hover {
+            color: black;
+            background: $brand-green;
+        }
+    }
+    &.btn-secondary {
+        border: 2px $brand-white solid;
+        color: $brand-white;
+        &:hover {
+            color: black;
+            background: $brand-white;
+        }
+    }
+}
+
+nav {
+    position: fixed;
+    right: 0px;
+    top: 3rem;
+    width: 26rem;
+    height: 4.5rem;
+    overflow: hidden;
+    background-color: black;
+    a {
+        float: left;
+        display: block;
+        height: 4.5rem;
+        padding: 0 .8rem;
+        border-top: 4px black solid;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5rem;
+        line-height: 4.5rem;
+        color: $brand-white;
+        &:hover {
+            color: $brand-green;
+        }
+        &.active {
+            border-top: 4px $brand-white solid;
+            &:hover {
+                border-top: 4px $brand-green solid;
+                color: $brand-green;
+            }
+        }
+    }
+}
+
+
+.pseudo-container {
+    position: fixed;
+    left: 0px;
+    bottom: 4rem;
+    padding: 2.5rem 4rem;
+    width: 30rem;
+    height: 10rem;
+    background-color: black;
+}
+
+.content-min {
+    position: fixed;
+    left: 0px;
+    bottom: 4rem;
+    padding: 2.5rem 4rem;
+    width: 30rem;
+    height: 10rem;
+    // background-color: black;
+    .bio-img {
+        position: relative;
+        float: left;
+        border-radius: 50%;
+        width: 10rem;
+        height: 10rem;
+        margin-right: 1rem;
+        background-image: url('../img/bio.jpg');
+        background-repeat: none;
+        background-size: cover;
+    }
+    .content-min-text {
+        position: relative;
+        float: right;
+        width: 270px;
+    }
+    .content-more {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        color: $brand-white;
+        cursor: pointer;
+    }
+}
+
+.content-max {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 38rem;
+    padding: 4.5rem 3.5rem 0rem 6.5rem;
+    padding-bottom: -9rem;
+    background-color: black;
+    overflow-y: hidden;
+    .bio-col-left {
+        float: left;
+        width: 10rem;
+        margin-right: 2rem;
+        .bio-img {
+            border-radius: 50%;
+            width: 10rem;
+            height: 10rem;
+            margin-right: 1rem;
+            background-image: url('../img/bio.jpg');
+            background-repeat: none;
+            background-size: cover;
+        }
+        .social-list {
+            margin-top: 1rem;
+            border-right: 1px $brand-white solid;
+            padding: 0;
+            .social-item {
+                display: block;
+                height: 2.5rem;
+                padding: .25rem 1rem;
+                font-family: 'Roboto', sans-serif;
+                font-size: 1.111rem;
+                line-height: 2.5rem;
+                color: $brand-white;
+                text-align: right;
+                text-decoration: none;
+                border-right: 3px black solid;
+                &:hover {
+                    border-right: 3px $brand-white solid;
+                }
+            }
+        }
+    }
+    .bio-col-right {
+        float: right;
+        width: 15rem;
+        height: 100%;
+        overflow-y: scroll;
+        
+    }
+    .bio-close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 1.8rem;
+        height: 1.8rem;
+        border: #f2f2f2 2px solid;
+        border-radius: 50%;
+        // Font for 'X'
+        cursor: pointer;
+        color: $brand-white;
+        font-family: 'Rasa', serif;
+        font-size: 1.555rem;
+        text-align: center;
+        line-height: 2rem;
+    }
+}

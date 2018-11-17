@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-2019",
+  "version": "1.0.0",
+  "description": "Chris Homsey Portfolio for 2019",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "sass:compile": "node-sass --include-path sass ./public/css/style.scss ./public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisHomsey/portfolio-2019.git"
+  },
+  "author": "Chris Homsey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisHomsey/portfolio-2019/issues"
+  },
+  "homepage": "https://github.com/ChrisHomsey/portfolio-2019#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node-sass": "^4.10.0"
+  },
+  "devDependencies": {
+    "plumber-sass": "^0.7.7"
+  }
+}
