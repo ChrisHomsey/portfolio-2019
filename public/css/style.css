@@ -3,9 +3,7 @@ html {
   box-sizing: border-box; }
 
 body {
-  background-color: black; }
-
-.container {
+  background-color: black;
   background-image: url("../img/bg.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -32,6 +30,16 @@ strong {
   font-weight: 600;
   color: #2D9CDB; }
 
+h1 {
+  font-size: 2.618rem;
+  line-height: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.10518rem;
+  padding-bottom: 0.39482rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #2D9CDB; }
+
 h2 {
   font-size: 1.618rem;
   line-height: 1rem;
@@ -44,6 +52,7 @@ h2 {
 
 button {
   display: inline-block;
+  position: relative;
   border-radius: 2rem;
   height: 2rem;
   padding-left: 1rem;
@@ -54,19 +63,42 @@ button {
   margin-bottom: 1rem;
   background-color: black;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.1111rem; }
-  button.btn-primary {
+  font-size: 1.1111rem;
+  z-index: 1;
+  cursor: pointer;
+  transition: 0.08s ease-in; }
+  button.green {
     color: #6FCF97;
-    border: 2px #6FCF97 solid; }
-    button.btn-primary:hover {
-      color: black;
-      background: #6FCF97; }
-  button.btn-secondary {
+    border: 2px #6FCF97 solid;
+    background: linear-gradient(to bottom, black 50%, #6FCF97 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease; }
+    button.green:hover {
+      background-position: bottom;
+      color: black; }
+  button.white {
+    color: #f2f2f2;
     border: 2px #f2f2f2 solid;
-    color: #f2f2f2; }
-    button.btn-secondary:hover {
-      color: black;
-      background: #f2f2f2; }
+    background: linear-gradient(to bottom, black 50%, #f2f2f2 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease; }
+    button.white:hover {
+      background-position: bottom;
+      color: black; }
+  button.red {
+    color: #CC5151;
+    border: 2px #CC5151 solid;
+    background: linear-gradient(to bottom, black 50%, #CC5151 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease; }
+    button.red:hover {
+      background-position: bottom;
+      color: black; }
+  button:focus {
+    outline: 0; }
 
 nav {
   position: fixed;
@@ -95,23 +127,20 @@ nav {
         border-top: 4px #6FCF97 solid;
         color: #6FCF97; }
 
-.pseudo-container {
+#content-min {
   position: fixed;
   left: 0px;
   bottom: 4rem;
   padding: 2.5rem 4rem;
   width: 30rem;
   height: 10rem;
-  background-color: black; }
-
-.content-min {
-  position: fixed;
-  left: 0px;
-  bottom: 4rem;
-  padding: 2.5rem 4rem;
-  width: 30rem;
-  height: 10rem; }
-  .content-min .bio-img {
+  background-color: black;
+  transition: left 0.7s; }
+  #content-min.hidden {
+    display: none; }
+  #content-min.closed {
+    left: -38rem; }
+  #content-min .bio-img {
     position: relative;
     float: left;
     border-radius: 50%;
@@ -121,11 +150,11 @@ nav {
     background-image: url("../img/bio.jpg");
     background-repeat: none;
     background-size: cover; }
-  .content-min .content-min-text {
+  #content-min .content-min-text {
     position: relative;
     float: right;
     width: 270px; }
-  .content-min .content-more {
+  #content-min #content-more {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
@@ -133,7 +162,7 @@ nav {
     color: #f2f2f2;
     cursor: pointer; }
 
-.content-max {
+#content-max {
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -143,12 +172,15 @@ nav {
   padding: 4.5rem 3.5rem 0rem 6.5rem;
   padding-bottom: -9rem;
   background-color: black;
-  overflow-y: hidden; }
-  .content-max .bio-col-left {
+  overflow-y: hidden;
+  transition: left 0.7s; }
+  #content-max.closed {
+    left: -38rem; }
+  #content-max .bio-col-left {
     float: left;
     width: 10rem;
     margin-right: 2rem; }
-    .content-max .bio-col-left .bio-img {
+    #content-max .bio-col-left .bio-img {
       border-radius: 50%;
       width: 10rem;
       height: 10rem;
@@ -156,11 +188,11 @@ nav {
       background-image: url("../img/bio.jpg");
       background-repeat: none;
       background-size: cover; }
-    .content-max .bio-col-left .social-list {
+    #content-max .bio-col-left .social-list {
       margin-top: 1rem;
       border-right: 1px #f2f2f2 solid;
       padding: 0; }
-      .content-max .bio-col-left .social-list .social-item {
+      #content-max .bio-col-left .social-list .social-item {
         display: block;
         height: 2.5rem;
         padding: .25rem 1rem;
@@ -171,14 +203,14 @@ nav {
         text-align: right;
         text-decoration: none;
         border-right: 3px black solid; }
-        .content-max .bio-col-left .social-list .social-item:hover {
+        #content-max .bio-col-left .social-list .social-item:hover {
           border-right: 3px #f2f2f2 solid; }
-  .content-max .bio-col-right {
+  #content-max .bio-col-right {
     float: right;
     width: 15rem;
     height: 100%;
     overflow-y: scroll; }
-  .content-max .bio-close-button {
+  #content-max #bio-close-button {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -191,4 +223,44 @@ nav {
     font-family: 'Rasa', serif;
     font-size: 1.555rem;
     text-align: center;
-    line-height: 2rem; }
+    line-height: 2rem;
+    background: linear-gradient(to bottom, black 50%, #f2f2f2 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease; }
+    #content-max #bio-close-button:hover {
+      background-position: bottom;
+      color: black; }
+
+#contact {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  bottom: 9rem;
+  width: 25rem;
+  height: 18rem;
+  padding: 2rem 3.5rem;
+  background: black;
+  transition: right .7s; }
+  #contact.closed {
+    right: -25rem; }
+  #contact #contact-methods {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 4rem; }
+    #contact #contact-methods button {
+      margin: 0;
+      height: 4rem;
+      width: 4rem; }
+      #contact #contact-methods button i.fa-2x {
+        margin-left: -0.18rem; }
+    #contact #contact-methods #contact-slack {
+      position: relative;
+      display: inline-block;
+      width: 4rem;
+      height: 4rem; }

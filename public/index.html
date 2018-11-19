@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chris Homsey</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rasa:400,600" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
@@ -12,25 +13,29 @@
     
 </head>
 <body>
-    <div class="container">
+    
+    <head>
         <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Contact</a>
+            <a href="#" class="nav-item active" id="nav-home">Home</a>
+            <a href="#" class="nav-item" id="nav-portfolio">Portfolio</a>
+            <a href="#" class="nav-item" id="nav-contact">Contact</a>
         </nav>
+    </head>
 
-        <div class="content-min">
+    <main>
+
+        <div id="content-min">
             <div class="bio-img"></div>
             <div class="content-min-text">
                 <h2>Chris Homsey</h2>
                 <p>I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.</p>
             </div>
-            <div class="content-more">...</div>
+            <div id="content-more">...</div>
         </div>
 
-        <div class="content-max">
+        <div id="content-max" class="closed">
 
-            <div class="bio-close-button">X</div>
+            <div id="bio-close-button">X</div>
 
             <div class="bio-col-left">
 
@@ -64,13 +69,46 @@
                     I’m currently open to new opportunities where I can grow as a developer. 
                 </p>
 
-                <button class="btn-primary">résumé</button>
-                <button class="btn-secondary">portfolio</button>
+                <button class="green">résumé</button>
+                <button class="white">portfolio</button>
 
             </div>
 
         </div>
-        
-    </div>
+
+        <div id="portfolio" class="closed">
+            
+        </div>
+
+        <div id="contact" class="closed">
+            <h2>Contact Me</h2>
+
+            <p>
+                Wanna chat? I'd love to talk to you about developing the online leg of your business!
+            
+                <strong>216.688.8713 • chomsey@protonmail.com</strong>
+            </p>
+
+            <div id="contact-methods">
+                
+                <button class="green contact contact-method" data-contact="Phone: 216.688.8713" onclick="location.href='tel:216-688-8713';">
+                    <i class="fas fa-phone fa-2x"></i>
+                </button>
+                
+                <button class="red contact contact-method" data-contact="Phone: 216.688.8713" onclick="location.href='mailto:chomsey@protonmail.com';">
+                    <i class="fas fa-envelope fa-2x"></i>
+                </button>
+                
+                <a href="slack://user?team=UE71N9MMK&id=chomsey1" class="contact-method" data-contact="Phone: 216.688.8713">
+                    <img id="contact-slack" src="./img/vendor/slack_144x144.png" />
+                </a>
+
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- </div> -->
+    <script src="./js/index.js" type="text/javascript"></script>
 </body>
 </html>

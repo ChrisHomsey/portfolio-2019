@@ -1,9 +1,9 @@
 @import "node_modules/plumber-sass/plumber";
 
 
-
 // Color Variables
 $brand-blue: #2D9CDB;
+$brand-red: #CC5151;
 $brand-green: #6FCF97;
 $brand-white: #f2f2f2;
 
@@ -14,9 +14,6 @@ html {
 
 body {
     background-color: black;
-}
-
-.container {
     background-image: url('../img/bg.jpg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -28,21 +25,6 @@ body {
     height: 100vh;
     width: 100vw;
 }
-
-// h2 {
-//     font-family: 'Roboto', sans-serif;
-//     font-size: 1.618rem;
-//     line-height: 1.5;
-//     color: $brand-blue;
-//     margin: .5rem 0;
-// }
-// p {
-//     font-family: 'Rasa', serif;
-//     font-size: 1rem;
-//     line-height: 1.5;
-//     color: $brand-white;
-//     margin-top: .7rem;
-// }
 
 p{
     @include plumber(
@@ -63,6 +45,19 @@ strong {
     color: $brand-blue;
 }
 
+h1{
+    @include plumber(
+		$grid-height: 0.5rem,
+		$baseline: 0.158203,
+		$font-size: 2.618 * 2,
+		$line-height: 1 * 2,
+		$leading-top: 1 * 2,
+		$leading-bottom: 1 * 2
+	);
+    font-family: 'Roboto', sans-serif;
+    color: $brand-blue;
+}
+
 h2 {
 	@include plumber(
 		$grid-height: 0.5rem,
@@ -78,6 +73,7 @@ h2 {
 
 button {
     display: inline-block;
+    position: relative;
     border-radius: 2rem;
     height: 2rem;
     padding-left: 1rem;
@@ -89,21 +85,47 @@ button {
     background-color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 1.1111rem;
-    &.btn-primary {
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.08s ease-in;
+    &.green {
         color: $brand-green;
         border: 2px $brand-green solid;
+        background: linear-gradient(to bottom, black 50%, $brand-green 50%);
+        background-size: 100% 200%;
+        background-position: top;
+        transition: all .2s ease;
         &:hover {
+            background-position: bottom;
             color: black;
-            background: $brand-green;
         }
     }
-    &.btn-secondary {
-        border: 2px $brand-white solid;
+    &.white {
         color: $brand-white;
+        border: 2px $brand-white solid;
+        background: linear-gradient(to bottom, black 50%, $brand-white 50%);
+        background-size: 100% 200%;
+        background-position: top;
+        transition: all .2s ease;
         &:hover {
+            background-position: bottom;
             color: black;
-            background: $brand-white;
         }
+    }
+    &.red {
+        color: $brand-red;
+        border: 2px $brand-red solid;
+        background: linear-gradient(to bottom, black 50%, $brand-red 50%);
+        background-size: 100% 200%;
+        background-position: top;
+        transition: all .2s ease;
+        &:hover {
+            background-position: bottom;
+            color: black;
+        }
+    }
+    &:focus {
+        outline: 0;
     }
 }
 
@@ -139,8 +161,7 @@ nav {
     }
 }
 
-
-.pseudo-container {
+#content-min {
     position: fixed;
     left: 0px;
     bottom: 4rem;
@@ -148,16 +169,13 @@ nav {
     width: 30rem;
     height: 10rem;
     background-color: black;
-}
-
-.content-min {
-    position: fixed;
-    left: 0px;
-    bottom: 4rem;
-    padding: 2.5rem 4rem;
-    width: 30rem;
-    height: 10rem;
-    // background-color: black;
+    transition: left 0.7s;
+    &.hidden {
+        display: none;
+    }
+    &.closed {
+        left: -38rem;
+    }
     .bio-img {
         position: relative;
         float: left;
@@ -174,7 +192,7 @@ nav {
         float: right;
         width: 270px;
     }
-    .content-more {
+    #content-more {
         position: absolute;
         bottom: 1rem;
         right: 1rem;
@@ -184,7 +202,7 @@ nav {
     }
 }
 
-.content-max {
+#content-max {
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -195,6 +213,10 @@ nav {
     padding-bottom: -9rem;
     background-color: black;
     overflow-y: hidden;
+    transition: left 0.7s;
+    &.closed {
+        left: -38rem;
+    }
     .bio-col-left {
         float: left;
         width: 10rem;
@@ -236,7 +258,7 @@ nav {
         overflow-y: scroll;
         
     }
-    .bio-close-button {
+    #bio-close-button {
         position: absolute;
         top: 1rem;
         right: 1rem;
@@ -244,12 +266,68 @@ nav {
         height: 1.8rem;
         border: #f2f2f2 2px solid;
         border-radius: 50%;
-        // Font for 'X'
+        // font for 'X'
         cursor: pointer;
         color: $brand-white;
         font-family: 'Rasa', serif;
         font-size: 1.555rem;
         text-align: center;
         line-height: 2rem;
+        // background fill effect
+        background: linear-gradient(to bottom, black 50%, $brand-white 50%);
+        background-size: 100% 200%;
+        background-position: top;
+        transition: all .2s ease;
+        &:hover {
+            background-position: bottom;
+            color: black;
+        }
     }
 }
+
+#contact {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 9rem;
+    width: 25rem;
+    height: 18rem;
+    padding: 2rem 3.5rem;
+    background: black;
+    transition: right .7s;
+    &.closed {
+        right: -25rem;
+    }
+
+    #contact-methods {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: 4rem;
+        
+        button{
+            margin: 0;
+            height: 4rem;
+            width: 4rem;
+            i {
+                &.fa-2x{
+                    margin-left: -0.18rem;
+                }
+            }
+        }
+        
+        #contact-slack {
+            position: relative;
+            display: inline-block;
+            width: 4rem;
+            height: 4rem;
+        }
+        
+    }
+}
+
+
