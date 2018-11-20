@@ -16,6 +16,17 @@
     
     <head>
         <nav id="nav-bar">
+            
+            <span class="open-side-nav">
+                <a href="#" onclick="handleSideMenu()">
+                    <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
+                    </svg>
+                </a>
+            </span>
+            
             <a href="#" class="nav-item active" id="nav-home">Home</a>
             <a href="#" class="nav-item" id="nav-portfolio">Portfolio</a>
             <a href="#" class="nav-item" id="nav-contact">Contact</a>
@@ -30,7 +41,9 @@
                 <h2>Chris Homsey</h2>
                 <p>I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.</p>
             </div>
-            <div id="content-more">...</div>
+            <div id="content-more">
+                ...
+            </div>
         </div>
 
         <div id="content-max" class="closed">
@@ -62,11 +75,11 @@
                 </p>
 
                 <p>
-                    As I’ve always been both visually and data inclined, I decided to move into the web/software space as a fullstack developer. I’ve taken my talent in R&D to learn about a ton of cutting edge web technologies such as <strong>Node, React, Mongo, and the AWS platform.</strong>
+                    I’ve always been both visually and data inclined, so I decided to move into the web/software space as a fullstack developer. I’ve taken my talent in R&D to learn about a ton of cutting edge web technologies such as <strong>Node, React, Mongo, and the AWS platform.</strong>
                 </p>
 
                 <p>
-                    I’m currently open to new opportunities where I can grow as a developer. 
+                    I’m currently open to new opportunities where I can grow as a developer.
                 </p>
 
                 <button class="green" id="toggle-resume-button">résumé</button>
@@ -109,10 +122,47 @@
                 <div class="dev-grid">
     
                     <div class="dev-item" id="cs-proj"></div>
-    
+
+                    <div class="dev-item">
+
+                        <h2>Culture-Stack</h2>
+
+                        <p>
+                            Culture Stack is a social media app that allows users to share their creative works and get feedback from other artists. We have created a platform for photographers to upload, categorize, and describe any challenges they are having with a particular process.
+                        </p>
+
+                        <p>
+                            This app was built on a MERN Stack - using MongoDB, Express, ReactJS, and NodeJS. The app is hosted on Heroku, which does not allow local file storage. Because of this, I've set up cloud storage via AWS S3 for all user uploaded content.
+                        </p>
+
+                    </div>
+                    
+                    <div class="dev-item">
+                        <h2>NYT-Search</h2>
+
+                        <p>
+                            This was a simple app built to allow the user to search articles from the New York Times and save their favorite articles. This could be useful
+                        </p>
+
+                        <p>
+                            NYT Search was also built on a MERN Stack - using MongoDB, Express, ReactJS, and NodeJS. It used the New York Times API to grab the articles based on the user's criteria.
+                        </p>
+
+                    </div>
+
                     <div class="dev-item" id="nyt-proj"></div>
     
                     <div class="dev-item" id="mh-proj"></div>
+
+                    <div class="dev-item">
+                        <h2>MeHungry</h2>
+                        <p>
+                            MeHungry is a small project that I worked on with a partner in late 2017. The idea was to build an app that suggests local restaraunts, cafés, and bars to the user based on mood and preference. JJ worked on the front-end design while I worked on the API calls and javascript logic.
+                        </p>
+                        <p>
+                            As silly as the idea seems, I learned a ton about the Google Maps, Google Places API, and javascript callbacks. We used Firebase to store previous seach parameters, allowing the user to recall previous search results the next time they visit the page.
+                        </p>
+                    </div>
     
                 </div>
                 
@@ -185,6 +235,8 @@
 
             </div>
         </div>
+
+        <div class="ring ring-more"></div>
     
     </main>
 
