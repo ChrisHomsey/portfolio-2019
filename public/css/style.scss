@@ -9,9 +9,9 @@ $brand-white: #f2f2f2;
 $brand-grey: #828282;
 
 // Breakpoint Variables
-$lg: 1170px;
-$md: 1024px;
-$sm: 640px;
+$lg: 1024px;
+$md: 990px;
+$sm: 480px;
 
 // Breakpoint mixin
 @mixin breakpoint($mq01: 0, $mq2: false, $maxmin: min-width) {
@@ -27,22 +27,29 @@ $sm: 640px;
 }
 
 html {
-    font-size: 18px;
+    font-size: 17px;
     box-sizing: border-box;
+    @include breakpoint($md) {
+        font-size: 18px;
+    }
 }
 
 body {
     background-color: black;
-    background-image: url('../img/bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: cover;
     margin:0;
     padding: 0;
-    overflow-y: hidden;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    @include breakpoint($sm){
+        background-image: url('../img/bg.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        overflow-y: hidden;
+        height: 100vh;
+        width: 100vw;
+    }
 }
 
 p{
@@ -163,107 +170,167 @@ button {
     }
 }
 
-#nav-bar {
-    position: fixed;
-    right: 0px;
-    top: 3rem;
-    width: 26rem;
-    height: 4.5rem;
-    overflow: hidden;
-    z-index: 100;
-    background-color: black;
-    a {
-        float: left;
-        display: block;
-        height: 4.5rem;
-        padding: 0 .8rem;
-        border-top: 4px black solid;
-        text-decoration: none;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.5rem;
-        line-height: 4.5rem;
-        color: $brand-white;
-        &:hover {
-            color: $brand-green;
-        }
-        &.active {
-            border-top: 4px $brand-white solid;
-            &:hover {
-                border-top: 4px $brand-green solid;
-                color: $brand-green;
-            }
-        }
-    }
-    transition: top .7s, right .7s;
-    &.portfolio-active {
-        // Calculate how far to the left the nav should go to line up with the edge of the portfolio div
-        right: calc(100vw/2 - 30rem);
-        top: 0;
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: #f2f2f2 2px solid;
+    border-radius: 50%;
+    // font for 'X'
+    cursor: pointer;
+    color: $brand-white;
+    font-family: 'Rasa', serif;
+    font-size: 1.555rem;
+    text-align: center;
+    line-height: 2rem;
+    // background fill effect
+    background: linear-gradient(to bottom, black 50%, $brand-white 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease;
+    &:hover {
+        background-position: bottom;
+        color: black;
     }
 }
 
-#content-min {
-    box-sizing: border-box;
-    position: fixed;
-    left: 0px;
-    bottom: 4rem;
-    padding: 2.5rem 4rem;
-    width: 38rem;
-    height: 15rem;
+#nav-bar {
+    // XS breakpoint styling
+    width: 100%;
+    height: 4rem;
     background-color: black;
-    transition: left 0.7s;
-    &.hidden {
+    top: 0;
+    right: 0;
+    .nav-item {
         display: none;
     }
-    &.closed {
-        left: -38rem;
-    }
-    .bio-img {
-        position: relative;
-        float: left;
-        border-radius: 50%;
-        width: 10rem;
-        height: 10rem;
-        margin-right: 1rem;
-        background-image: url('../img/bio.jpg');
-        background-repeat: none;
-        background-size: cover;
-    }
-    .content-min-text {
-        position: relative;
-        float: right;
-        width: 270px;
-    }
-    #content-more {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 2rem;
-        color: $brand-white;
-        cursor: pointer;
+
+    // MD+ breakpoint styling
+    @include breakpoint($md) {
+        position: fixed;
+        right: 0px;
+        top: 3rem;
+        width: 26rem;
+        height: 4.5rem;
+        overflow: hidden;
+        z-index: 100;
+        background-color: black;
+        .nav-item {
+            float: left;
+            display: block;
+            height: 4.5rem;
+            padding: 0 .8rem;
+            border-top: 4px black solid;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            line-height: 4.5rem;
+            color: $brand-white;
+            &:hover {
+                color: $brand-green;
+            }
+            &.active {
+                border-top: 4px $brand-white solid;
+                &:hover {
+                    border-top: 4px $brand-green solid;
+                    color: $brand-green;
+                }
+            }
+        }
+        transition: top .7s, right .7s;
+        &.portfolio-active {
+            // Calculate how far to the left the nav should go to line up with the edge of the portfolio div
+            right: calc(100vw/2 - 30rem);
+            top: 0;
+        }
     }
 }
 
-#content-max {
-    box-sizing: border-box;
+#open-side-nav{
     position: absolute;
+    right: 1rem;
+    top: 1rem;
+    svg{
+        // margin: .8rem;
+    }
+    @include breakpoint($md){
+        display: none;
+    }
+}
+
+#side-nav {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    z-index:1000;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 38rem;
-    padding: 4.5rem 3.5rem 0rem 6.5rem;
-    padding-bottom: -9rem;
+    padding-top: 4rem;
+    transition: 0.3s;
     background-color: black;
-    overflow-y: hidden;
-    transition: left 0.7s;
-    &.closed {
-        left: -38rem;
+    overflow-x: hidden;
+    &.open {
+        width: 100%;
     }
-    .bio-col-left {
-        float: left;
-        width: 10rem;
-        margin-right: 2rem;
+    .item {
+        margin-left: 2rem;
+        padding: .5rem .5rem .5rem 1.3rem;
+        display:block;
+        transition: 0.3s;
+        
+        // Font styling
+        font-family: 'Roboto', sans-serif;
+        color: $brand-white;
+        text-decoration: none;
+        @include plumber(
+            $grid-height: 0.5rem,
+            $baseline: 0.158203,
+            $font-size: 2.618 * 2,
+            $line-height: 1 * 2,
+            $leading-top: 1 * 2,
+            $leading-bottom: 10
+            );
+    }
+}
+
+// Only shows on mobile sizes (anything under $md breakpoint)
+#mobile-bio-img {
+    width: 100vw;
+    height: 45vh;
+    background-image: url('../img/bio.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    @include breakpoint($md){
+        display: none;
+    }
+}
+
+// Only shows on desktop/tablet sizes (anything over $md breakpoint)
+#content-min {
+    display: none;
+    @include breakpoint($md){
+        box-sizing: border-box;
+        display: block;
+        position: fixed;
+        left: 0px;
+        bottom: 4rem;
+        padding: 2.5rem 4rem;
+        width: 38rem;
+        height: 15rem;
+        background-color: black;
+        transition: left 0.7s;
+        &.hidden {
+            display: none;
+        }
+        &.closed {
+            left: -38rem;
+        }
         .bio-img {
+            position: relative;
+            float: left;
             border-radius: 50%;
             width: 10rem;
             height: 10rem;
@@ -272,99 +339,158 @@ button {
             background-repeat: none;
             background-size: cover;
         }
-        .social-list {
-            margin-top: 1rem;
-            border-right: 1px $brand-white solid;
-            padding: 0;
-            .social-item {
-                display: block;
-                height: 2.5rem;
-                padding: .25rem 1rem;
-                font-family: 'Roboto', sans-serif;
-                font-size: 1.111rem;
-                line-height: 2.5rem;
-                color: $brand-white;
-                text-align: right;
-                text-decoration: none;
-                border-right: 3px black solid;
-                &:hover {
-                    border-right: 3px $brand-white solid;
+        .content-min-text {
+            position: relative;
+            float: right;
+            width: 270px;
+        }
+        #content-more {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: $brand-white;
+            cursor: pointer;
+        }
+    }
+}
+
+#content-max {
+    // xs breakpoint styling
+    box-sizing: border-box;
+    width: 100%;
+    background: black;
+    padding: 1rem;
+    .bio-col-left{
+        display: none;
+    }
+    #bio-close-button{
+        display: none;
+    }
+    &.mobile-hidden {
+        display: none;
+    }
+
+    // md+ breakpoint styling
+    @include breakpoint($md) {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 38rem;
+        padding: 4.5rem 3.5rem 0rem 6.5rem;
+        padding-bottom: -9rem;
+        background-color: black;
+        overflow-y: hidden;
+        transition: left 0.7s;
+        &.closed {
+            left: -38rem;
+        }
+        &.mobile-hidden{
+            display: block;
+        }
+        #bio-close-button{
+            display: block;
+        }
+        .bio-col-left {
+            display: block;
+            float: left;
+            width: 10rem;
+            margin-right: 2rem;
+            .bio-img {
+                border-radius: 50%;
+                width: 10rem;
+                height: 10rem;
+                margin-right: 1rem;
+                background-image: url('../img/bio.jpg');
+                background-repeat: none;
+                background-size: cover;
+            }
+            .social-list {
+                margin-top: 1rem;
+                border-right: 1px $brand-white solid;
+                padding: 0;
+                .social-item {
+                    display: block;
+                    height: 2.5rem;
+                    padding: .25rem 1rem;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 1.111rem;
+                    line-height: 2.5rem;
+                    color: $brand-white;
+                    text-align: right;
+                    text-decoration: none;
+                    border-right: 3px black solid;
+                    &:hover {
+                        border-right: 3px $brand-white solid;
+                    }
                 }
             }
         }
-    }
-    .bio-col-right {
-        float: right;
-        width: 15rem;
-        height: 100%;
-        overflow-y: scroll;
-        
-    }
-    #bio-close-button {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 1.8rem;
-        height: 1.8rem;
-        border: #f2f2f2 2px solid;
-        border-radius: 50%;
-        // font for 'X'
-        cursor: pointer;
-        color: $brand-white;
-        font-family: 'Rasa', serif;
-        font-size: 1.555rem;
-        text-align: center;
-        line-height: 2rem;
-        // background fill effect
-        background: linear-gradient(to bottom, black 50%, $brand-white 50%);
-        background-size: 100% 200%;
-        background-position: top;
-        transition: all .2s ease;
-        &:hover {
-            background-position: bottom;
-            color: black;
+        .bio-col-right {
+            float: right;
+            width: 15rem;
+            height: 100%;
+            overflow-y: scroll;
+            
         }
     }
 }
 
 #portfolio {
     box-sizing: border-box;
-    position: relative;
-    margin: 0 auto;
-    width: 60rem;
-    height: 100vh;
-    padding: 4.5rem;
     background: black;
-    overflow-y: scroll;
-    transition: margin-top 1s;
-    &.closed {
-        margin-top: 100vh;
+    width: 100%;
+    padding: 1rem;
+    &.mobile-hidden{
+        display: none;
     }
-    .portfolio-header{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: .5rem;
-        width: 100%;
-        .portfolio-info {
-            grid-column: 1/4
+
+    // md+ breakpoint styling
+    @include breakpoint($md) {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        width: 60rem;
+        height: 100vh;
+        padding: 4.5rem;
+        overflow-y: scroll;
+        bottom:0;
+        transition: all 1s;
+        &.closed {
+            bottom: -130vh;
         }
-        .portfolio-selector {
-            padding-top: 1rem;
-            text-align: right;
-            button{
-                height: 2.5rem;
-                width: 2.5rem;
-                i {
-                    &.fa-camera{
-                        margin-left: -0.4em;
-                    }
-                    &.fa-code {
-                        margin-left: -0.5em;
+        &.mobile-hidden{
+            display: block;
+        }
+        .portfolio-header{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-column-gap: .5rem;
+            width: 100%;
+            .portfolio-info {
+                grid-column: 1/4
+            }
+            .portfolio-selector {
+                padding-top: 1rem;
+                text-align: right;
+                button{
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    i {
+                        &.fa-camera{
+                            margin-left: -0.4em;
+                        }
+                        &.fa-code {
+                            margin-left: -0.5em;
+                        }
                     }
                 }
             }
         }
     }
+
 }
 
 #portfolio-dev, 
@@ -376,47 +502,63 @@ button {
 
 .dev-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
     width: 100%;
     margin-top: 1rem;
+
     .dev-item {
         box-sizing: border-box;
         width: 100%;
+    }
+    .dev-item-img {
         height: 20rem;
-        padding: 0 1rem;
+        background-size: cover;
+        background-position: center center;
+        width: 100vw;
+        margin-left: -1rem;
+        margin-right: -1rem;
     }
     #cs-proj {
-        background: url(../img/culture-stack.png);
-        background-size: cover;
-        transition: background(linear-gradient) 1s;
+        background-image: url(../img/culture-stack.png);
         &:hover {
             background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/culture-stack.png);
             background-size: cover;
+            background-position: center center;
         }
     }
     #nyt-proj {
         background-image: url(../img/nyt-search.png);
-        background-size: cover;
         &:hover {
             background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/nyt-search.png);
             background-size: cover;
+            background-position: center center;
         }
     }
     #mh-proj {
         background-image: url(../img/me-hungry.png);
-        background-size: cover;
         &:hover {
             background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/me-hungry.png);
             background-size: cover;
+            background-position: center center;
+        }
+    }
+
+    @include breakpoint($md){
+        grid-template-columns: 1fr 1fr;
+        .dev-item {
+            padding: 0 1rem;
+        }
+        .dev-item-img{
+            margin: 0;
+            width: 100%;
         }
     }
 }
 
 .photo-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 0.5rem;
     width: 100%;
     height: auto;
@@ -431,22 +573,16 @@ button {
             cursor: pointer;
         }
     }
+    @include breakpoint($md){
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
 
 #contact {
     box-sizing: border-box;
-    position: absolute;
-    right: 0;
-    bottom: 9rem;
-    width: 25rem;
-    height: 18rem;
-    padding: 2rem 3.5rem;
     background: black;
-    transition: right .7s;
-    &.closed {
-        right: -25rem;
-    }
-
+    width: 100%;
+    padding: 1rem;
     #contact-methods {
         display: flex;
         flex-direction: row;
@@ -473,7 +609,27 @@ button {
             display: inline-block;
             width: 4rem;
             height: 4rem;
+        }   
+    }
+    &.mobile-hidden{
+        display: none;
+    }
+    @include breakpoint($md) {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 9rem;
+        width: 25rem;
+        height: 18rem;
+        padding: 2rem 3.5rem;
+        background: black;
+        transition: right .7s;
+        &.closed {
+            right: -25rem;
         }
-        
+        &.mobile-hidden{
+            display: block;
+        }
     }
 }
