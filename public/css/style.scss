@@ -6,6 +6,25 @@ $brand-blue: #2D9CDB;
 $brand-red: #CC5151;
 $brand-green: #6FCF97;
 $brand-white: #f2f2f2;
+$brand-grey: #828282;
+
+// Breakpoint Variables
+$lg: 1170px;
+$md: 1024px;
+$sm: 640px;
+
+// Breakpoint mixin
+@mixin breakpoint($mq01: 0, $mq2: false, $maxmin: min-width) {
+    @if $mq2 == false {
+        @media ($maxmin: $mq01) {
+            @content;
+        }
+    }@else{
+        @media (min-width: $mq01) and (max-width: $mq2) {
+            @content;
+        }
+    }
+}
 
 html {
     font-size: 18px;
@@ -52,7 +71,7 @@ h1{
 		$font-size: 2.618 * 2,
 		$line-height: 1 * 2,
 		$leading-top: 1 * 2,
-		$leading-bottom: 1 * 2
+		$leading-bottom: 3
 	);
     font-family: 'Roboto', sans-serif;
     color: $brand-blue;
@@ -69,6 +88,9 @@ h2 {
 	);
     font-family: 'Roboto', sans-serif;
     color: $brand-blue;
+    &.subheader {
+        color: $brand-white;
+    }
 }
 
 button {
@@ -124,18 +146,31 @@ button {
             color: black;
         }
     }
+    &.grey {
+        color: $brand-grey;
+        border: 2px $brand-grey solid;
+        background: linear-gradient(to bottom, black 50%, $brand-grey 50%);
+        background-size: 100% 200%;
+        background-position: top;
+        transition: all .2s ease;
+        &:hover {
+            background-position: bottom;
+            color: black;
+        }
+    }
     &:focus {
         outline: 0;
     }
 }
 
-nav {
+#nav-bar {
     position: fixed;
     right: 0px;
     top: 3rem;
     width: 26rem;
     height: 4.5rem;
     overflow: hidden;
+    z-index: 100;
     background-color: black;
     a {
         float: left;
@@ -159,15 +194,22 @@ nav {
             }
         }
     }
+    transition: top .7s, right .7s;
+    &.portfolio-active {
+        // Calculate how far to the left the nav should go to line up with the edge of the portfolio div
+        right: calc(100vw/2 - 30rem);
+        top: 0;
+    }
 }
 
 #content-min {
+    box-sizing: border-box;
     position: fixed;
     left: 0px;
     bottom: 4rem;
     padding: 2.5rem 4rem;
-    width: 30rem;
-    height: 10rem;
+    width: 38rem;
+    height: 15rem;
     background-color: black;
     transition: left 0.7s;
     &.hidden {
@@ -284,6 +326,111 @@ nav {
         }
     }
 }
+
+#portfolio {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+    width: 60rem;
+    height: 100vh;
+    padding: 4.5rem;
+    background: black;
+    overflow-y: scroll;
+    transition: margin-top 1s;
+    &.closed {
+        margin-top: 100vh;
+    }
+    .portfolio-header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: .5rem;
+        width: 100%;
+        .portfolio-info {
+            grid-column: 1/4
+        }
+        .portfolio-selector {
+            padding-top: 1rem;
+            text-align: right;
+            button{
+                height: 2.5rem;
+                width: 2.5rem;
+                i {
+                    &.fa-camera{
+                        margin-left: -0.4em;
+                    }
+                    &.fa-code {
+                        margin-left: -0.5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#portfolio-dev, 
+#portfolio-photography {
+    &.hidden {
+        display: none;
+    }
+}
+
+.dev-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    width: 100%;
+    .dev-item {
+        width: 100%;
+        height: 15rem;
+    }
+    #cs-proj {
+        background: url(../img/culture-stack.png);
+        background-size: cover;
+        transition: background(linear-gradient) 1s;
+        &:hover {
+            background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/culture-stack.png);
+            background-size: cover;
+        }
+    }
+    #nyt-proj {
+        background-image: url(../img/nyt-search.png);
+        background-size: cover;
+        &:hover {
+            background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/nyt-search.png);
+            background-size: cover;
+        }
+    }
+    #mh-proj {
+        background-image: url(../img/me-hungry.png);
+        background-size: cover;
+        &:hover {
+            background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/me-hungry.png);
+            background-size: cover;
+        }
+    }
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 0.5rem;
+    width: 100%;
+    height: auto; 
+    .photo-column {
+        width: 100%;
+        // height: 40rem;
+        line-height: 0;
+        .photo {
+            margin-bottom: .5rem;
+            width: 100%;
+            background-color: $brand-blue;
+            cursor: pointer;
+        }
+    }
+}
+
+
 
 #contact {
     box-sizing: border-box;

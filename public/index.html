@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chris Homsey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rasa:400,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <link rel="stylesheet" href="./css/style.css">
     
 </head>
 <body>
     
     <head>
-        <nav>
+        <nav id="nav-bar">
             <a href="#" class="nav-item active" id="nav-home">Home</a>
             <a href="#" class="nav-item" id="nav-portfolio">Portfolio</a>
             <a href="#" class="nav-item" id="nav-contact">Contact</a>
@@ -69,19 +69,99 @@
                     I’m currently open to new opportunities where I can grow as a developer. 
                 </p>
 
-                <button class="green">résumé</button>
-                <button class="white">portfolio</button>
+                <button class="green" id="toggle-resume-button">résumé</button>
+                <button class="white" id="toggle-portfolio-button">portfolio</button>
 
             </div>
 
         </div>
 
+        
         <div id="portfolio" class="closed">
+
+            <h1>Portfolio</h1>
             
+            <div id="portfolio-dev">
+                
+                <div class="portfolio-header">
+    
+                    <div class="portfolio-info">
+                        
+                        <h2 class="subheader">Web/Software</h2>
+            
+                        <p>
+                            I’m constantly building new projects to learn everything from UI, DevOps, and RESTful APIs.
+                        </p>
+    
+                    </div>
+    
+                    <div class="portfolio-selector">
+                        <button class="white">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button class="grey" id="toggle-photography">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+                
+                <div class="dev-grid">
+    
+                    <div class="dev-item" id="cs-proj"></div>
+    
+                    <div class="dev-item" id="nyt-proj"></div>
+    
+                    <div class="dev-item" id="mh-proj"></div>
+    
+                </div>
+                
+            </div>
+            
+            <div id="portfolio-photography" class="hidden">
+    
+                <div class="portfolio-header">
+    
+                    <div class="portfolio-info">
+                        
+                        <h2 class="subheader">Photography</h2>
+            
+                        <p>
+                            One of my favorite things to do is travel photography. I've had the opportunity to travel to places like Asia and South America and capture some of the greatest memories of my life.
+                        </p>
+        
+                    </div>
+        
+                    <div class="portfolio-selector">
+                        <button class="grey" id="toggle-dev">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button class="white">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                        
+                </div>
+    
+                <div class="photo-grid">
+    
+                    <div class="photo-column" id="photo-column-one"></div>
+    
+                    <div class="photo-column" id="photo-column-two"></div>
+    
+                    <div class="photo-column" id="photo-column-three"></div>
+    
+                    <div class="photo-column" id="photo-column-four"></div>
+    
+                </div>
+    
+            </div>
+
         </div>
 
+
         <div id="contact" class="closed">
-            <h2>Contact Me</h2>
+            <h2>Contact</h2>
 
             <p>
                 Wanna chat? I'd love to talk to you about developing the online leg of your business!
@@ -91,15 +171,15 @@
 
             <div id="contact-methods">
                 
-                <button class="green contact contact-method" data-contact="Phone: 216.688.8713" onclick="location.href='tel:216-688-8713';">
+                <button class="green contact" onclick="location.href='tel:216-688-8713';">
                     <i class="fas fa-phone fa-2x"></i>
                 </button>
                 
-                <button class="red contact contact-method" data-contact="Phone: 216.688.8713" onclick="location.href='mailto:chomsey@protonmail.com';">
+                <button class="red contact" onclick="location.href='mailto:chomsey@protonmail.com';">
                     <i class="fas fa-envelope fa-2x"></i>
                 </button>
                 
-                <a href="slack://user?team=UE71N9MMK&id=chomsey1" class="contact-method" data-contact="Phone: 216.688.8713">
+                <a href="slack://user?team=UE71N9MMK&id=chomsey1" class="contact-method">
                     <img id="contact-slack" src="./img/vendor/slack_144x144.png" />
                 </a>
 

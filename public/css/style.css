@@ -36,7 +36,7 @@ h1 {
   margin-top: 1rem;
   padding-top: 0.10518rem;
   padding-bottom: 0.39482rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-family: 'Roboto', sans-serif;
   color: #2D9CDB; }
 
@@ -49,6 +49,8 @@ h2 {
   margin-bottom: 1rem;
   font-family: 'Roboto', sans-serif;
   color: #2D9CDB; }
+  h2.subheader {
+    color: #f2f2f2; }
 
 button {
   display: inline-block;
@@ -97,18 +99,30 @@ button {
     button.red:hover {
       background-position: bottom;
       color: black; }
+  button.grey {
+    color: #828282;
+    border: 2px #828282 solid;
+    background: linear-gradient(to bottom, black 50%, #828282 50%);
+    background-size: 100% 200%;
+    background-position: top;
+    transition: all .2s ease; }
+    button.grey:hover {
+      background-position: bottom;
+      color: black; }
   button:focus {
     outline: 0; }
 
-nav {
+#nav-bar {
   position: fixed;
   right: 0px;
   top: 3rem;
   width: 26rem;
   height: 4.5rem;
   overflow: hidden;
-  background-color: black; }
-  nav a {
+  z-index: 100;
+  background-color: black;
+  transition: top .7s, right .7s; }
+  #nav-bar a {
     float: left;
     display: block;
     height: 4.5rem;
@@ -119,21 +133,25 @@ nav {
     font-size: 1.5rem;
     line-height: 4.5rem;
     color: #f2f2f2; }
-    nav a:hover {
+    #nav-bar a:hover {
       color: #6FCF97; }
-    nav a.active {
+    #nav-bar a.active {
       border-top: 4px #f2f2f2 solid; }
-      nav a.active:hover {
+      #nav-bar a.active:hover {
         border-top: 4px #6FCF97 solid;
         color: #6FCF97; }
+  #nav-bar.portfolio-active {
+    right: calc(100vw/2 - 30rem);
+    top: 0; }
 
 #content-min {
+  box-sizing: border-box;
   position: fixed;
   left: 0px;
   bottom: 4rem;
   padding: 2.5rem 4rem;
-  width: 30rem;
-  height: 10rem;
+  width: 38rem;
+  height: 15rem;
   background-color: black;
   transition: left 0.7s; }
   #content-min.hidden {
@@ -231,6 +249,84 @@ nav {
     #content-max #bio-close-button:hover {
       background-position: bottom;
       color: black; }
+
+#portfolio {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  width: 60rem;
+  height: 100vh;
+  padding: 4.5rem;
+  background: black;
+  overflow-y: scroll;
+  transition: margin-top 1s; }
+  #portfolio.closed {
+    margin-top: 100vh; }
+  #portfolio .portfolio-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: .5rem;
+    width: 100%; }
+    #portfolio .portfolio-header .portfolio-info {
+      grid-column: 1/4; }
+    #portfolio .portfolio-header .portfolio-selector {
+      padding-top: 1rem;
+      text-align: right; }
+      #portfolio .portfolio-header .portfolio-selector button {
+        height: 2.5rem;
+        width: 2.5rem; }
+        #portfolio .portfolio-header .portfolio-selector button i.fa-camera {
+          margin-left: -0.4em; }
+        #portfolio .portfolio-header .portfolio-selector button i.fa-code {
+          margin-left: -0.5em; }
+
+#portfolio-dev.hidden,
+#portfolio-photography.hidden {
+  display: none; }
+
+.dev-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  width: 100%; }
+  .dev-grid .dev-item {
+    width: 100%;
+    height: 15rem; }
+  .dev-grid #cs-proj {
+    background: url(../img/culture-stack.png);
+    background-size: cover;
+    transition: background(linear-gradient) 1s; }
+    .dev-grid #cs-proj:hover {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/culture-stack.png);
+      background-size: cover; }
+  .dev-grid #nyt-proj {
+    background-image: url(../img/nyt-search.png);
+    background-size: cover; }
+    .dev-grid #nyt-proj:hover {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/nyt-search.png);
+      background-size: cover; }
+  .dev-grid #mh-proj {
+    background-image: url(../img/me-hungry.png);
+    background-size: cover; }
+    .dev-grid #mh-proj:hover {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/me-hungry.png);
+      background-size: cover; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 0.5rem;
+  width: 100%;
+  height: auto; }
+  .photo-grid .photo-column {
+    width: 100%;
+    line-height: 0; }
+    .photo-grid .photo-column .photo {
+      margin-bottom: .5rem;
+      width: 100%;
+      background-color: #2D9CDB;
+      cursor: pointer; }
 
 #contact {
   box-sizing: border-box;
