@@ -21,7 +21,6 @@ function transitionEndEventName () {
 var transitionEnd = transitionEndEventName();
 
 
-
 // Nav Menu
 
 // Mobile only - open side menu
