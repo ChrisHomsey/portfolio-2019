@@ -1,3 +1,4 @@
+// Initialize
 var sideMenuOpen = false;
 
 function transitionEndEventName () {
@@ -16,8 +17,6 @@ function transitionEndEventName () {
             return transitions[i];
         }
     }
-
-    //TODO: throw 'TransitionEnd event is not supported in this browser'; 
 }
 var transitionEnd = transitionEndEventName();
 
@@ -37,35 +36,19 @@ document.getElementById('close-side-nav').addEventListener('click', function(){
 
 // if the user selects home -> set it to active, open #content-min and close the other divs
 document.getElementById('nav-home').addEventListener('click', function() {
-    document.getElementById('nav-portfolio').classList.remove('active');
-    document.getElementById('nav-contact').classList.remove('active');
-    document.getElementById('nav-home').classList.add('active');
-    document.getElementById('nav-bar').classList.remove('portfolio-active');
-
-    document.getElementById('contact').classList.add('closed');
-    document.getElementById('portfolio').classList.add('closed');
-    document.getElementById('content-min').classList.remove('closed');
-
+    handleOpenHome();
 });
 
 
 // if the user selects portfolio -> set it to active, open #portfolio and close the other divs
 document.getElementById('nav-portfolio').addEventListener('click', function() {
-    openPortfolio();
+    handleOpenPortfolio();
 });
 
 
 // if the user selects contact -> set it to active, open #contact and close the other divs
 document.getElementById('nav-contact').addEventListener('click', function() {
-    document.getElementById('nav-home').classList.remove('active');
-    document.getElementById('nav-portfolio').classList.remove('active');
-    document.getElementById('nav-contact').classList.add('active');
-    document.getElementById('nav-bar').classList.remove('portfolio-active');
-    
-    document.getElementById('content-min').classList.add('closed');
-    document.getElementById('content-max').classList.add('closed');
-    document.getElementById('portfolio').classList.add('closed');
-    document.getElementById('contact').classList.remove('closed');
+    handleOpenContact();
 });
 
 
@@ -73,7 +56,7 @@ document.getElementById('nav-contact').addEventListener('click', function() {
 document.getElementById('toggle-portfolio-button').addEventListener('click', function(){
     document.getElementById('portfolio').classList.remove('mobile-hidden');
     document.getElementById('content-max').classList.add('mobile-hidden');
-    openPortfolio();
+    handleOpenPortfolio();
 })
     
 // When the content-more button is pressed, the small bio is hidden and the large bio is shown
@@ -93,9 +76,20 @@ document.getElementById('bio-close-button').addEventListener('click', function()
     maxBio.addEventListener(transitionEnd, openMinBio, false);
 })
 
+// Opens the home section
+var handleOpenHome = function() {
+    document.getElementById('nav-portfolio').classList.remove('active');
+    document.getElementById('nav-contact').classList.remove('active');
+    document.getElementById('nav-home').classList.add('active');
+    document.getElementById('nav-bar').classList.remove('portfolio-active');
 
-// Opens the portfolio section
-var openPortfolio = function() {
+    document.getElementById('contact').classList.add('closed');
+    document.getElementById('portfolio').classList.add('closed');
+    document.getElementById('content-min').classList.remove('closed');
+}
+
+// Handles the opening of the portfolio section
+var handleOpenPortfolio = function() {
     document.getElementById('nav-home').classList.remove('active');
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-portfolio').classList.add('active');
@@ -116,6 +110,19 @@ document.getElementById('toggle-photography').addEventListener('click', function
     document.getElementById('portfolio-dev').classList.add('hidden');
     document.getElementById('portfolio-photography').classList.remove('hidden');
 })
+
+// Handles the opening of the contact section
+var handleOpenContact = function(){
+    document.getElementById('nav-home').classList.remove('active');
+    document.getElementById('nav-portfolio').classList.remove('active');
+    document.getElementById('nav-contact').classList.add('active');
+    document.getElementById('nav-bar').classList.remove('portfolio-active');
+    
+    document.getElementById('content-min').classList.add('closed');
+    document.getElementById('content-max').classList.add('closed');
+    document.getElementById('portfolio').classList.add('closed');
+    document.getElementById('contact').classList.remove('closed');
+}
 
 
 // Handles the opening of the side menu
