@@ -14,7 +14,7 @@ body {
   transition: background-image ease-in 1s; }
   @media (min-width: 760px) {
     body {
-      background-image: url("../img/bg-1.jpg");
+      background-image: url("../img/bg-1@2x.jpg");
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
@@ -131,9 +131,15 @@ button {
 main {
   position: fixed;
   width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: hidden; }
+  height: calc(100% - 3.5rem);
+  overflow-x: hidden; }
+  @media (min-width: 760px) {
+    main {
+      height: 100%;
+      overflow-y: hidden;
+      padding: 0; } }
+  main.home-active {
+    left: 38rem; }
 
 .close-button {
   position: absolute;
@@ -263,8 +269,10 @@ main {
       padding: 1.5rem 4rem 2.5rem 4rem;
       width: 38rem;
       height: 15rem;
-      background: rgba(0, 0, 0, 0.5);
-      transition: left 0.7s, background-color 1s; }
+      background: black;
+      transition: left 0.7s, background-color 2s; }
+      #content-min.faded {
+        background: rgba(0, 0, 0, 0.5); }
       #content-min.hidden {
         display: none; }
       #content-min.closed {
@@ -421,6 +429,7 @@ main {
     box-sizing: border-box;
     width: 100%; }
   .dev-grid .dev-item-img {
+    position: relative;
     height: 20rem;
     background-size: cover;
     background-position: center center;
@@ -428,31 +437,29 @@ main {
     margin-left: -0.8rem;
     margin-right: -0.8rem;
     text-align: center; }
-    .dev-grid .dev-item-img .dev-buttons {
-      margin: 40% auto;
-      opacity: 0; }
-    .dev-grid .dev-item-img:hover .dev-buttons {
-      display: block;
-      opacity: 1; }
+    .dev-grid .dev-item-img .dev-item-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+      opacity: 0;
+      transition: opacity 0.7s; }
+      .dev-grid .dev-item-img .dev-item-inner .dev-buttons {
+        margin: 28% auto;
+        opacity: 0; }
+      .dev-grid .dev-item-img .dev-item-inner:hover {
+        opacity: 1; }
+        .dev-grid .dev-item-img .dev-item-inner:hover .dev-buttons {
+          display: block;
+          opacity: 1; }
   .dev-grid #cs-proj {
-    background-image: url(../img/culture-stack.jpg);
-    transition: 1s; }
-    .dev-grid #cs-proj:hover {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/culture-stack.png);
-      background-size: cover;
-      background-position: center center; }
+    background-image: url(../img/culture-stack.jpg); }
   .dev-grid #nyt-proj {
     background-image: url(../img/nyt-search.png); }
-    .dev-grid #nyt-proj:hover {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/nyt-search.png);
-      background-size: cover;
-      background-position: center center; }
   .dev-grid #mh-proj {
     background-image: url(../img/me-hungry.jpg); }
-    .dev-grid #mh-proj:hover {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/me-hungry.png);
-      background-size: cover;
-      background-position: center center; }
   @media (min-width: 760px) {
     .dev-grid {
       grid-template-columns: 40% 60%; }
@@ -460,6 +467,7 @@ main {
         padding: 0 1rem; }
       .dev-grid .dev-item-img {
         margin: 0;
+        margin-top: 1rem;
         width: 100%;
         height: 0;
         padding-bottom: 70%; } }
@@ -522,10 +530,36 @@ main {
       bottom: 9rem;
       width: 25rem;
       height: 18rem;
-      padding: 2rem 3.5rem;
+      padding: 1.5rem 3.5rem;
       background: black;
       transition: right .7s; }
       #contact.mobile-hidden {
         display: block; }
       #contact.closed {
         right: -25rem; } }
+
+footer {
+  position: relative;
+  padding: 0 1rem;
+  background: black;
+  color: white;
+  font-size: 1rem; }
+  footer p {
+    font-size: 1rem; }
+  @media (min-width: 760px) {
+    footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 14rem;
+      padding: 0rem 1rem;
+      opacity: 0.45;
+      text-align: right;
+      transition: opacity 0.3s; }
+      footer p {
+        line-height: 1;
+        margin-top: .4rem;
+        margin-bottom: 0;
+        font-size: 0.86rem; }
+      footer:hover {
+        opacity: 0.7; } }

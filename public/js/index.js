@@ -1,20 +1,24 @@
 // Initialize
 var sideMenuOpen = false;
+var portfolioHasBeenLoaded = false;
 
 function bgRotation() {
-    // Checks to make sure there is a background image, which is the case if the viewport is xs
-    if (window.getComputedStyle(document.body).backgroundImage !== null) {
-        var index = 1;
-        setInterval(function(){
-            if (index >= 6) {
-                index = 1;
-            } else {
-                index++
-            }
-            document.body.style.backgroundImage = "url('./img/bg-" + index + ".jpg')";
-        },
-        9000)
-    }
+    var index = 2;
+    setInterval(function(){
+        if (index >= 6) {
+            index = 1;
+        } else {
+            index++
+        }
+        document.body.style.backgroundImage = "url('./img/bg-" + index + "@2x.jpg')";
+    },
+    9000);
+}
+
+function minBioFade() {
+    setTimeout(function(){
+        document.getElementById('content-min').classList.add('faded');
+    }, 100);
 }
 
 function transitionEndEventName () {
@@ -105,6 +109,11 @@ var handleOpenHome = function() {
 
 // Handles the opening of the portfolio section
 var handleOpenPortfolio = function() {
+    if (!portfolioHasBeenLoaded) {
+        portfolioHasBeenLoaded = true;
+        renderPhotoGallery();
+    }
+
     document.getElementById('nav-home').classList.remove('active');
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-portfolio').classList.add('active');
@@ -154,7 +163,7 @@ var handleSideMenu = function(){
 
 // Function called to open the large bio div
 var openMaxBio = function() {
-    var minBio = document.getElementById('content-min'); 
+    var minBio = document.getElementById('content-min');
     minBio.removeEventListener(transitionEnd, openMaxBio);
     
     var contentMax = document.getElementById('content-max');
@@ -235,5 +244,37 @@ var renderPhotoGallery = function() {
     document.querySelector('#photo-column-four').innerHTML = photoColumns[3]; 
 }
 
-renderPhotoGallery();
-bgRotation();
+// Functions for loading all background images and making 
+
+function isMobileDevice() {
+    return (document.documentElement.clientWidth < 480);
+};
+
+function loadImagesInSequence(images) {
+    if (!images.length) {
+      return;
+    }
+  
+    var img = new Image(),
+        url = images.shift();
+  
+    img.onload = function(){
+        loadImagesInSequence(images) 
+    };
+    img.src = url;
+}
+
+// Tablet/Desktop functions for fading the content-min bio and loading bg images in order
+if (!isMobileDevice()){
+    minBioFade();
+    loadImagesInSequence([
+        './img/bg-2@2x.jpg',
+        './img/bg-3@2x.jpg',
+        './img/bg-4@2x.jpg',
+        './img/bg-5@2x.jpg',
+        './img/bg-6@2x.jpg'
+    ]);
+    bgRotation();
+}
+
+console.log("© 2019 Chris Homsey. All rights reserved.")

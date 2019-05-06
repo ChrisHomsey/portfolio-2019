@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chris Homsey</title>
+    <meta name="description" content="Amateur photographer. Professional nerd. Let's talk tech.">
+    <title>Chris Homsey | Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,600" rel="stylesheet">
@@ -65,6 +66,31 @@
 
             <div class="close-button" id="bio-close-button">X</div>
 
+            
+            <div class="bio-col-right" id="scroll-style">
+                
+                <h2>Chris Homsey</h2>
+                <p>
+                    I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.
+                </p>
+                
+                <p>
+                    My background is rooted in IT, where I served as the Professional Services Engineer. I worked with consultants to indentify technical challenges our clients were facing and engineer solutions using vendor software.
+                </p>
+                
+                <p>
+                    I’ve always been both visually and data inclined, so I decided to move into the web/software space as a fullstack developer. I’ve taken my talent in R&D to learn about a ton of cutting edge web technologies such as <strong>Node, React, MongoDB, and the AWS platform.</strong>
+                </p>
+                
+                <p>
+                    I’m currently open to new opportunities where I can grow as a developer.
+                </p>
+                
+                <button class="green" id="toggle-resume-button" onclick="location.href='https://s3.us-east-2.amazonaws.com/www.chrishomsey.com/docs/Chris+Homsey+-+Resume.pdf';">résumé</button>
+                <button class="white" id="toggle-portfolio-button">portfolio</button>
+                
+            </div>
+            
             <div class="bio-col-left">
 
                     <div class="bio-img"></div>
@@ -75,30 +101,6 @@
                         <a href="https://www.instagram.com/homseydrums" target="new_tab" class="social-item">Insta</a>
                         <a href="mailto:chomsey@protonmail.com" class="social-item">@</a>
                     </div>
-
-            </div>
-
-            <div class="bio-col-right" id="scroll-style">
-
-                <h2>Chris Homsey</h2>
-                <p>
-                    I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.
-                </p>
-
-                <p>
-                    My background is rooted in IT, where I served as the Professional Services Engineer. I worked with consultants to indentify technical challenges our clients were facing and engineer solutions using vendor software.
-                </p>
-
-                <p>
-                    I’ve always been both visually and data inclined, so I decided to move into the web/software space as a fullstack developer. I’ve taken my talent in R&D to learn about a ton of cutting edge web technologies such as <strong>Node, React, MongoDB, and the AWS platform.</strong>
-                </p>
-
-                <p>
-                    I’m currently open to new opportunities where I can grow as a developer.
-                </p>
-
-                <button class="green" id="toggle-resume-button" onclick="location.href='https://s3.us-east-2.amazonaws.com/www.chrishomsey.com/docs/Chris+Homsey+-+Resume.pdf';">résumé</button>
-                <button class="white" id="toggle-portfolio-button">portfolio</button>
 
             </div>
 
@@ -138,11 +140,16 @@
                 <div class="dev-grid">
                     
                     <div class="dev-item dev-item-img" id="cs-proj">
-
-                        <div class="dev-buttons">
-                            <button class="white" onclick="location.href='https://github.com/jjdaurora/culture-stack';">Github</button>
-                            <button class="white" onclick="location.href='https://culture-stack.herokuapp.com';">App</button>
+                        
+                        <div class="dev-item-inner">
+                            
+                            <div class="dev-buttons">
+                                <button class="white" onclick="location.href='https://github.com/jjdaurora/culture-stack';">Github</button>
+                                <button class="white" onclick="location.href='https://culture-stack.herokuapp.com';">App</button>
+                            </div>
+                            
                         </div>
+
 
                     </div>
                     
@@ -162,10 +169,14 @@
                     
                     <div class="dev-item dev-item-img" id="nyt-proj">
 
+                        <div class="dev-item-inner">
+
                             <div class="dev-buttons">
                                 <button class="white" onclick="location.href='https://github.com/chrishomsey/nyt-search';">Github</button>
                                 <button class="white" onclick="location.href='https://nyt-search-reactjs.herokuapp.com';">App</button>
                             </div>
+                        
+                        </div>
 
                     </div>
                     
@@ -184,10 +195,14 @@
 
                     <div class="dev-item dev-item-img" id="mh-proj">
 
+                        <div class="dev-item-inner">
+
                             <div class="dev-buttons">
                                 <button class="white" onclick="location.href='https://github.com/chrishomsey/me-hungry';">Github</button>
                                 <button class="white" onclick="location.href='https://chrishomsey.github.io/me-hungry';">App</button>
                             </div>
+
+                        </div>        
 
                     </div>
 
@@ -272,6 +287,10 @@
 
             </div>
         </div>
+
+        <footer>
+            <p>© 2019 Chris Homsey. All rights reserved.</p>
+        </footer>
     
     </main>
 
