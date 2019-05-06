@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/style.css">
     
 </head>
-<body>
+<body id="body">
     
     <header>
         <nav id="nav-bar">
@@ -20,9 +20,9 @@
             <span id="open-side-nav">
                 <a href="#">
                     <svg width="30" height="30">
-                        <path d="M0,5 30,5" stroke="#fefefe" stroke-width="5"/>
-                        <path d="M0,14 30,14" stroke="#fefefe" stroke-width="5"/>
-                        <path d="M0,23 30,23" stroke="#fefefe" stroke-width="5"/>
+                        <path d="M0,5 30,5" stroke="#fefefe" stroke-width="3"/>
+                        <path d="M0,14 30,14" stroke="#fefefe" stroke-width="3"/>
+                        <path d="M0,23 30,23" stroke="#fefefe" stroke-width="3"/>
                     </svg>
                 </a>
             </span>
@@ -56,6 +56,9 @@
             <div id="content-more">
                 ...
             </div>
+            <!-- <div class="close-button">
+                X
+            </div> -->
         </div>
 
         <div id="content-max" class="closed">
@@ -75,7 +78,7 @@
 
             </div>
 
-            <div class="bio-col-right">
+            <div class="bio-col-right" id="scroll-style">
 
                 <h2>Chris Homsey</h2>
                 <p>
@@ -108,8 +111,17 @@
             
             <div id="portfolio-dev">
                 
+                <div class="portfolio-selector">
+                    <button class="white">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button class="grey" id="toggle-photography">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+
                 <div class="portfolio-header">
-    
+                    
                     <div class="portfolio-info">
                         
                         <h2 class="subheader">Web/Software</h2>
@@ -120,14 +132,6 @@
     
                     </div>
     
-                    <div class="portfolio-selector">
-                        <button class="white">
-                            <i class="fas fa-code"></i>
-                        </button>
-                        <button class="grey" id="toggle-photography">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                    </div>
                     
                 </div>
                 
@@ -203,6 +207,15 @@
             
             <div id="portfolio-photography" class="hidden">
     
+                <div class="portfolio-selector">
+                    <button class="grey" id="toggle-dev">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button class="white">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                    
                 <div class="portfolio-header">
     
                     <div class="portfolio-info">
@@ -215,15 +228,6 @@
         
                     </div>
         
-                    <div class="portfolio-selector">
-                        <button class="grey" id="toggle-dev">
-                            <i class="fas fa-code"></i>
-                        </button>
-                        <button class="white">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                    </div>
-                        
                 </div>
     
                 <div class="photo-grid">
@@ -268,8 +272,6 @@
 
             </div>
         </div>
-
-        <div class="ring ring-more"></div>
     
     </main>
 

@@ -8,9 +8,11 @@ $brand-green: #6FCF97;
 $brand-white: #f2f2f2;
 $brand-grey: #828282;
 
+$trans-black: rgba(0,0,0,0.1);
+
 // Breakpoint Variables
 $lg: 1024px;
-$md: 990px;
+$md: 760px;
 $sm: 480px;
 
 // Breakpoint mixin
@@ -40,13 +42,13 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    @include breakpoint($sm){
-        background-image: url('../img/bg.jpg');
+    transition: background-image ease-in 1s;
+    @include breakpoint($md){
+        background-image: url('../img/bg-1.jpg');
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;
         background-size: cover;
-        overflow-y: hidden;
         height: 100vh;
         width: 100vw;
     }
@@ -89,7 +91,7 @@ h2 {
 		$grid-height: 0.5rem,
 		$baseline: 0.158203,
 		$font-size: 1.618 * 2,
-		$line-height: 1 * 2,
+		$line-height: 1 * 3,
 		$leading-top: 1 * 2,
 		$leading-bottom: 1 * 2
 	);
@@ -98,6 +100,16 @@ h2 {
     &.subheader {
         color: $brand-white;
     }
+}
+
+*::-webkit-scrollbar {
+    background-color: black;
+    width: .2rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $brand-white;
+    width: .2rem;
 }
 
 button {
@@ -171,6 +183,14 @@ button {
     }
 }
 
+main {
+    position: fixed;
+    width: 100%;
+    height:100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .close-button {
     position: absolute;
     top: 1rem;
@@ -202,22 +222,22 @@ button {
     width: 100%;
     height: 3.5rem;
     background-color: black;
+    opacity: 1;
     top: 0;
     right: 0;
     .nav-item {
         display: none;
     }
-
     // MD+ breakpoint styling
     @include breakpoint($md) {
         position: fixed;
         right: 0px;
-        top: 3rem;
+        top:2rem;
         width: 26rem;
         height: 4.5rem;
-        overflow: hidden;
         z-index: 100;
-        background-color: black;
+        overflow: hidden;
+        transition: top .7s, right .7s;
         .nav-item {
             float: left;
             display: block;
@@ -240,10 +260,17 @@ button {
                 }
             }
         }
-        transition: top .7s, right .7s;
+        &.portfolio-active {
+            right: -5rem;
+            top: 0;
+        }
+    }
+    // LG Breakpoint styling
+    @include breakpoint($lg) {
+        top: 3rem;
         &.portfolio-active {
             // Calculate how far to the left the nav should go to line up with the edge of the portfolio div
-            right: calc(100vw/2 - 30rem);
+            right: calc(100vw/2 - 29.8rem);
             top: 0;
         }
     }
@@ -253,9 +280,6 @@ button {
     position: absolute;
     right: 1rem;
     top: 1rem;
-    svg{
-        // margin: .8rem;
-    }
     @include breakpoint($md){
         display: none;
     }
@@ -318,16 +342,19 @@ button {
         position: fixed;
         left: 0px;
         bottom: 4rem;
-        padding: 2.5rem 4rem;
+        padding: 1.5rem 4rem 2.5rem 4rem;
         width: 38rem;
         height: 15rem;
-        background-color: black;
-        transition: left 0.7s;
+        background: rgba(0, 0, 0, 0.5);
+        transition: left 0.7s, background-color 1s;
         &.hidden {
             display: none;
         }
         &.closed {
             left: -38rem;
+        }
+        &:hover {
+            background: rgba(0,0,0,1);
         }
         .bio-img {
             position: relative;
@@ -371,16 +398,15 @@ button {
     &.mobile-hidden {
         display: none;
     }
-
     // md+ breakpoint styling
     @include breakpoint($md) {
         display: block;
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
+        height: 100vh;
         width: 38rem;
-        padding: 4.5rem 3.5rem 0rem 6.5rem;
+        padding: 4.5rem 0 0rem 6.5rem;
         padding-bottom: -9rem;
         background-color: black;
         overflow-y: hidden;
@@ -433,6 +459,7 @@ button {
             float: right;
             width: 15rem;
             height: 100%;
+            padding-right: 3.5rem;
             overflow-y: scroll;
             
         }
@@ -447,48 +474,54 @@ button {
     &.mobile-hidden{
         display: none;
     }
-
     // md+ breakpoint styling
-    @include breakpoint($md) {
+    @include breakpoint($md){
         display: block;
         position: relative;
         margin: 0 auto;
-        width: 60rem;
-        height: 100vh;
-        padding: 4.5rem;
-        overflow-y: scroll;
-        bottom:0;
+        padding: 4.5rem 1rem;
+        width: 100%;
+        height: 100%;
+        bottom: 0px;
+        overflow-y:scroll;
         transition: all 1s;
+        .portfolio-selector {
+            position: absolute;
+            top: 4.8rem;
+            right: 1.5rem;
+            text-align: right;
+            margin-top: -0.4rem;
+            button{
+                height: 2.5rem;
+                width: 2.5rem;
+                i {
+                    &.fa-camera{
+                        margin-left: -0.4em;
+                    }
+                    &.fa-code {
+                        margin-left: -0.5em;
+                    }
+                }
+            }
+        }
+        .portfolio-header{
+            position: relative;
+            padding-bottom: 0.5rem;
+            width: 100%;
+        }
         &.closed {
-            bottom: -130vh;
+            bottom: -100vh;
         }
         &.mobile-hidden{
             display: block;
         }
-        .portfolio-header{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-column-gap: .5rem;
-            width: 100%;
-            .portfolio-info {
-                grid-column: 1/4
-            }
-            .portfolio-selector {
-                padding-top: 1rem;
-                text-align: right;
-                button{
-                    height: 2.5rem;
-                    width: 2.5rem;
-                    i {
-                        &.fa-camera{
-                            margin-left: -0.4em;
-                        }
-                        &.fa-code {
-                            margin-left: -0.5em;
-                        }
-                    }
-                }
-            }
+    }
+    @include breakpoint($lg) {
+        width: 60rem;
+        height: 100vh;
+        padding: 4.5rem;
+        .portfolio-selector {
+            right: 6rem;
         }
     }
 
@@ -516,9 +549,9 @@ button {
         height: 20rem;
         background-size: cover;
         background-position: center center;
-        width: 100vw;
-        margin-left: -1rem;
-        margin-right: -1rem;
+        width: calc(100vw - 0.4rem);
+        margin-left: -0.8rem;
+        margin-right: -0.8rem;
         text-align: center;
         .dev-buttons {
             margin: 40% auto;
@@ -532,7 +565,7 @@ button {
         }
     }
     #cs-proj {
-        background-image: url(../img/culture-stack.png);
+        background-image: url(../img/culture-stack.jpg);
         transition: 1s;
         &:hover {
             background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/culture-stack.png);
@@ -549,7 +582,7 @@ button {
         }
     }
     #mh-proj {
-        background-image: url(../img/me-hungry.png);
+        background-image: url(../img/me-hungry.jpg);
         &:hover {
             background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/me-hungry.png);
             background-size: cover;
@@ -558,13 +591,15 @@ button {
     }
 
     @include breakpoint($md){
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 40% 60%;
         .dev-item {
             padding: 0 1rem;
         }
         .dev-item-img{
             margin: 0;
             width: 100%;
+            height: 0;
+            padding-bottom: 70%;
         }
     }
 }
@@ -580,14 +615,21 @@ button {
         width: 100%;
         line-height: 0;
         .photo {
-            margin-bottom: .5rem;
-            width: 100%;
-            background-color: $brand-blue;
+            margin-bottom: 0.2rem;
+            margin-left: -0.8rem;
+            margin-right: -0.8rem;
+            width: calc(100vw - 0.4rem);
             cursor: pointer;
         }
     }
     @include breakpoint($md){
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        .photo-column {
+            .photo {
+                margin: 0 0 0.5rem 0;
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -628,21 +670,20 @@ button {
         display: none;
     }
     @include breakpoint($md) {
-        box-sizing: border-box;
         display: block;
         position: absolute;
-        right: 0;
+        right: 0rem;
         bottom: 9rem;
         width: 25rem;
         height: 18rem;
         padding: 2rem 3.5rem;
         background: black;
         transition: right .7s;
+        &.mobile-hidden {
+            display: block;
+        }
         &.closed {
             right: -25rem;
-        }
-        &.mobile-hidden{
-            display: block;
         }
     }
 }

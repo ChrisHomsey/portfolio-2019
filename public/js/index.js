@@ -1,6 +1,22 @@
 // Initialize
 var sideMenuOpen = false;
 
+function bgRotation() {
+    // Checks to make sure there is a background image, which is the case if the viewport is xs
+    if (window.getComputedStyle(document.body).backgroundImage !== null) {
+        var index = 1;
+        setInterval(function(){
+            if (index >= 6) {
+                index = 1;
+            } else {
+                index++
+            }
+            document.body.style.backgroundImage = "url('./img/bg-" + index + ".jpg')";
+        },
+        9000)
+    }
+}
+
 function transitionEndEventName () {
     var i,
         undefined,
@@ -220,3 +236,4 @@ var renderPhotoGallery = function() {
 }
 
 renderPhotoGallery();
+bgRotation();
