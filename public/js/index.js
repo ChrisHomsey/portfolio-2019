@@ -203,6 +203,10 @@ var handleMobileBio = function() {
 }
 
 var handleMobilePortfolio = function() {
+    if (!portfolioHasBeenLoaded) {
+        portfolioHasBeenLoaded = true;
+        renderPhotoGallery();
+    }
     document.getElementById('content-max').classList.add('mobile-hidden');
     document.getElementById('contact').classList.add('mobile-hidden');
     document.getElementById('portfolio').classList.remove('mobile-hidden');
