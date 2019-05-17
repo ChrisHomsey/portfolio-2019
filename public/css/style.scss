@@ -7,6 +7,7 @@ $brand-red: #CC5151;
 $brand-green: #6FCF97;
 $brand-white: #f2f2f2;
 $brand-grey: #828282;
+$brand-coral: #c8b2b2;
 
 $off-black: #2f2a2e;
 
@@ -29,15 +30,13 @@ $sm: 480px;
 }
 
 html {
-    font-size: 17px;
+    font-size: 18px;
     box-sizing: border-box;
-    @include breakpoint($md) {
-        font-size: 18px;
-    }
 }
 
 body {
     background-color: black;
+    background-image: none;
     margin:0;
     padding: 0;
     height: 100%;
@@ -74,31 +73,53 @@ strong {
 }
 
 h1{
-    @include plumber(
-		$grid-height: 0.5rem,
-		$baseline: 0.158203,
-		$font-size: 2.618 * 2,
-		$line-height: 1 * 2,
-		$leading-top: 1 * 2,
-		$leading-bottom: 3
-	);
+    color: $brand-coral;
     font-family: 'Roboto', sans-serif;
-    color: $brand-blue;
+    @include plumber(
+        $grid-height: 0.5rem,
+        $baseline: 0.158203,
+        $font-size: 2.618 * 2,
+        $line-height: 1 * 2,
+        $leading-top: 1 * 2,
+        $leading-bottom: 5
+    );
+    @include breakpoint($md){
+        color: $brand-blue;
+    }
 }
 
 h2 {
-	@include plumber(
-		$grid-height: 0.5rem,
-		$baseline: 0.158203,
-		$font-size: 1.618 * 2,
-		$line-height: 1 * 3,
-		$leading-top: 1 * 2,
-		$leading-bottom: 1 * 2
-	);
     font-family: 'Roboto', sans-serif;
-    color: $brand-blue;
+    color: $brand-coral;
+    @include plumber(
+        $grid-height: 0.5rem,
+        $baseline: 0.158203,
+        $font-size: 2.618 * 2,
+        $line-height: 1 * 2,
+        $leading-top: 1 * 2,
+        $leading-bottom: 5
+    );
     &.subheader {
         color: $brand-white;
+        @include plumber(
+            $grid-height: 0.5rem,
+            $baseline: 0.158203,
+            $font-size: 1.618 * 2,
+            $line-height: 1 * 3,
+            $leading-top: 1 * 2,
+            $leading-bottom: 1 * 2
+        );
+    }
+    @include breakpoint($md){
+        color: $brand-blue;
+        @include plumber(
+            $grid-height: 0.5rem,
+            $baseline: 0.158203,
+            $font-size: 1.618 * 2,
+            $line-height: 1 * 3,
+            $leading-top: 1 * 2,
+            $leading-bottom: 1 * 2
+        );
     }
 }
 
@@ -108,7 +129,7 @@ h2 {
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: $brand-white;
+    background-color: $brand-coral;
     width: .2rem;
 }
 
@@ -183,15 +204,86 @@ button {
     }
 }
 
+.mobile-only {
+    @include breakpoint($md){
+        display: none;
+    }
+}
+
+.triangle-container {
+    position: relative;
+    margin: -3rem -1rem 3rem -1rem;
+    // border-top: 0.65rem solid rgba(255,255,255,0.9);
+    .triangle-left {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 0;
+        border-style: solid;
+        border-width: 38px 80vw 0 0;
+        border-color: rgba(233,233,255,0.05) transparent transparent transparent;
+    }
+    .triangle-left-2 {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 0;
+        border-style: solid;
+        border-width: 100px 100vw 0 0;
+        border-color: rgba(255,255,255,0.03) transparent transparent transparent;
+    }
+    .triangle-right {
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 80px 0 0 100vw;
+        border-color: rgba(113, 160, 211, 0.11) transparent transparent transparent;
+    }
+    
+    .triangle-right-2 {
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 140px 0 0 120vw;
+        border-color: rgba(113, 160, 211, 0.12) transparent transparent transparent;
+    }
+
+    .triangle-right-3 {
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: 0;
+        // margin: -1.3rem -1rem 1.5rem -1rem;
+        border-style: solid;
+        border-width: 220px 0 0 150vw;
+        border-color: rgba(113, 160, 211, 0.18) transparent transparent transparent;
+    }
+    .triangle-middle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: calc(50%);
+        border-style: solid;
+        border-width: 36px 50vw 50vw 50vw;
+        border-color: rgba(113, 160, 211, 0.14) transparent transparent transparent;
+    }
+}
+
+
+
 main {
     position: fixed;
     width: 100%;
-    height: calc(100% - 3.5rem);
+    height: 100%;
     overflow-x: hidden;
     @include breakpoint($md){
         height: 100%;
         overflow-y: hidden;
-        padding: 0
+        padding: 0;
     }
     &.home-active{
         left: 38rem;
@@ -226,10 +318,13 @@ main {
 
 #nav-bar {
     // XS breakpoint styling
-    width: 100%;
-    height: 3.5rem;
+    position:absolute;
+    width: 4rem;
+    height: 3.8rem;
+    border-radius: 0% 0 0 50%;
+    z-index: 5;
     background-color: black;
-    opacity: 1;
+    opacity: 0.8;
     top: 0;
     right: 0;
     .nav-item {
@@ -244,6 +339,7 @@ main {
         height: 4.5rem;
         z-index: 100;
         overflow: hidden;
+        border-radius: 0;
         transition: top .7s, right .7s;
         .nav-item {
             float: left;
@@ -268,7 +364,6 @@ main {
             }
         }
         &.portfolio-active {
-            // position: absolute;
             right: -5rem;
             top: 0;
         }
@@ -399,9 +494,12 @@ main {
     box-sizing: border-box;
     width: 100%;
     background: black;
-    padding: 1rem;
+    padding: 3rem 1rem 0.5rem 1rem;
     .bio-col-left{
        display: none;
+    }
+    .bio-col-right {
+        margin-top: 2rem;
     }
     #bio-close-button{
         display: none;
@@ -415,10 +513,9 @@ main {
         position: absolute;
         top: 0;
         left: 0;
-        height: 100vh;
+        height: 100%;
         width: 38rem;
-        padding: 4.5rem 0 0rem 6.5rem;
-        padding-bottom: -9rem;
+        padding: 4.5rem 0 0rem 4.5rem;
         background-color: black;
         overflow-y: hidden;
         transition: left 0.7s;
@@ -469,7 +566,9 @@ main {
         .bio-col-right {
             float: right;
             width: 15rem;
-            height: 100%;
+            height: calc(100% - 1rem);
+            margin-top: 0;
+            padding-top: 0rem;
             padding-right: 3.5rem;
             overflow-y: scroll;
             
@@ -481,7 +580,7 @@ main {
     box-sizing: border-box;
     background: black;
     width: 100%;
-    padding: 1rem;
+    padding: 3rem 1rem 0.5rem 1rem;
     &.mobile-hidden{
         display: none;
     }
@@ -645,7 +744,7 @@ main {
     box-sizing: border-box;
     background: black;
     width: 100%;
-    padding: 1rem;
+    padding: 3rem 1rem;
     #contact-methods {
         display: flex;
         flex-direction: row;
@@ -683,7 +782,7 @@ main {
         right: 0rem;
         bottom: 9rem;
         width: 25rem;
-        height: 18rem;
+        height: 16rem;
         padding: 1.5rem 3.5rem;
         background: black;
         transition: right .7s;
@@ -701,7 +800,6 @@ footer {
     padding: 0 1rem;
     background: black;
     color: white;
-    // text-align: center;
     font-size: 1rem;
     p {
         font-size: 1rem;
@@ -723,6 +821,9 @@ footer {
         }
         &:hover {
             opacity: 0.7;
+        }
+        &.portfolio-active {
+            display: none;
         }
     }
 }

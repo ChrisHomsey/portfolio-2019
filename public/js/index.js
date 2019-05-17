@@ -101,6 +101,7 @@ var handleOpenHome = function() {
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-home').classList.add('active');
     document.getElementById('nav-bar').classList.remove('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.remove('portfolio-active');
 
     document.getElementById('contact').classList.add('closed');
     document.getElementById('portfolio').classList.add('closed');
@@ -118,6 +119,7 @@ var handleOpenPortfolio = function() {
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-portfolio').classList.add('active');
     document.getElementById('nav-bar').classList.add('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.add('portfolio-active');
 
     document.getElementById('content-min').classList.add('closed');
     document.getElementById('content-max').classList.add('closed');
@@ -141,6 +143,7 @@ var handleOpenContact = function(){
     document.getElementById('nav-portfolio').classList.remove('active');
     document.getElementById('nav-contact').classList.add('active');
     document.getElementById('nav-bar').classList.remove('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.remove('portfolio-active');
     
     document.getElementById('content-min').classList.add('closed');
     document.getElementById('content-max').classList.add('closed');
