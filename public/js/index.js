@@ -3,6 +3,7 @@ var sideMenuOpen = false;
 var portfolioHasBeenLoaded = false;
 
 function bgRotation() {
+    if (isMobileDevice) return null;
     var index = 2;
     setInterval(function(){
         if (index >= 6) {
@@ -45,29 +46,36 @@ var transitionEnd = transitionEndEventName();
 
 // Mobile only - open side menu
 
-document.getElementById('open-side-nav').addEventListener('click', function(){
-    handleSideMenu();
+document.getElementById('open-side-nav').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/menu');
 })
 
-document.getElementById('close-side-nav').addEventListener('click', function(){
+document.getElementById('close-side-nav').addEventListener('click', function(e){
+    e.preventDefault();
     handleSideMenu();
+    window.history.back();
 })
 
 // if the user selects home -> set it to active, open #content-min and close the other divs
-document.getElementById('nav-home').addEventListener('click', function() {
-    handleOpenHome();
+document.getElementById('nav-home').addEventListener('click', function(e) {
+    e.preventDefault();
+    router.navigate('/');
 });
 
 
 // if the user selects portfolio -> set it to active, open #portfolio and close the other divs
-document.getElementById('nav-portfolio').addEventListener('click', function() {
-    handleOpenPortfolio();
+document.getElementById('nav-portfolio').addEventListener('click', function(e) {
+    // handleOpenPortfolio();
+    e.preventDefault();
+    router.navigate('/portfolio');
 });
 
 
 // if the user selects contact -> set it to active, open #contact and close the other divs
-document.getElementById('nav-contact').addEventListener('click', function() {
-    handleOpenContact();
+document.getElementById('nav-contact').addEventListener('click', function(e) {
+    e.preventDefault();
+    router.navigate('/contact');
 });
 
 
@@ -75,24 +83,16 @@ document.getElementById('nav-contact').addEventListener('click', function() {
 document.getElementById('toggle-portfolio-button').addEventListener('click', function(){
     document.getElementById('portfolio').classList.remove('mobile-hidden');
     document.getElementById('content-max').classList.add('mobile-hidden');
-    handleOpenPortfolio();
+    router.navigate('/portfolio');
 })
     
 // When the content-more button is pressed, the small bio is hidden and the large bio is shown
-document.getElementById('content-more').addEventListener('click', function () {
-    var minBio = document.getElementById('content-min');
-    minBio.classList.add('closed');
-    
-    // Wait until this transition is done, then call openMaxBio
-    minBio.addEventListener(transitionEnd, openMaxBio, false);
+document.getElementById('content-more').addEventListener('click', function (e) {
+    router.navigate('/bio');
 });
 
 document.getElementById('bio-close-button').addEventListener('click', function() {
-    var maxBio = document.getElementById('content-max');
-    maxBio.classList.add('closed');
-    
-    // Wait until this transition is done, then call openMinBio
-    maxBio.addEventListener(transitionEnd, openMinBio, false);
+    router.navigate('/');
 })
 
 // Opens the home section
@@ -101,10 +101,29 @@ var handleOpenHome = function() {
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-home').classList.add('active');
     document.getElementById('nav-bar').classList.remove('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.remove('portfolio-active');
 
     document.getElementById('contact').classList.add('closed');
     document.getElementById('portfolio').classList.add('closed');
     document.getElementById('content-min').classList.remove('closed');
+}
+
+// Handles the opening of the bio
+var handleOpenBio = function() {
+    var minBio = document.getElementById('content-min');
+    minBio.classList.add('closed');
+    
+    // Wait until this transition is done, then call openMaxBio
+    minBio.addEventListener(transitionEnd, openMaxBio, false);
+}
+
+// Handles the closing of the bio
+var handleCloseBio = function() {
+    var maxBio = document.getElementById('content-max');
+    maxBio.classList.add('closed');
+    
+    // Wait until this transition is done, then call openMinBio
+    maxBio.addEventListener(transitionEnd, openMinBio, false);
 }
 
 // Handles the opening of the portfolio section
@@ -118,6 +137,7 @@ var handleOpenPortfolio = function() {
     document.getElementById('nav-contact').classList.remove('active');
     document.getElementById('nav-portfolio').classList.add('active');
     document.getElementById('nav-bar').classList.add('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.add('portfolio-active');
 
     document.getElementById('content-min').classList.add('closed');
     document.getElementById('content-max').classList.add('closed');
@@ -126,14 +146,24 @@ var handleOpenPortfolio = function() {
 }
 
 // Toggle between dev and photography portfolios
-document.getElementById('toggle-dev').addEventListener('click', function(){
+document.getElementById('toggle-dev').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/portfolio/development');
+})
+document.getElementById('toggle-photography').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/portfolio/photography')
+})
+
+var handleDevelopmentPortfolioToggle = function() {
     document.getElementById('portfolio-photography').classList.add('hidden');
     document.getElementById('portfolio-dev').classList.remove('hidden');
-})
-document.getElementById('toggle-photography').addEventListener('click', function(){
+}
+
+var handlePhotographyPortfolioToggle = function() {
     document.getElementById('portfolio-dev').classList.add('hidden');
     document.getElementById('portfolio-photography').classList.remove('hidden');
-})
+}
 
 // Handles the opening of the contact section
 var handleOpenContact = function(){
@@ -141,6 +171,7 @@ var handleOpenContact = function(){
     document.getElementById('nav-portfolio').classList.remove('active');
     document.getElementById('nav-contact').classList.add('active');
     document.getElementById('nav-bar').classList.remove('portfolio-active');
+    document.getElementsByTagName('footer')[0].classList.remove('portfolio-active');
     
     document.getElementById('content-min').classList.add('closed');
     document.getElementById('content-max').classList.add('closed');
@@ -151,7 +182,6 @@ var handleOpenContact = function(){
 
 // Handles the opening of the side menu
 var handleSideMenu = function(){
-    console.log('start open');
     if (sideMenuOpen){
         sideMenuOpen = false;
         document.getElementById('side-nav').classList.remove('open');
@@ -181,19 +211,19 @@ var openMinBio = function() {
 
 
 // Mobile page handlers
-document.getElementById('side-nav-home').addEventListener('click', function(){
-    handleMobileBio();
-    handleSideMenu();
+document.getElementById('side-nav-home').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/');
 })
 
-document.getElementById('side-nav-portfolio').addEventListener('click', function(){
-    handleMobilePortfolio();
-    handleSideMenu();
+document.getElementById('side-nav-portfolio').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/portfolio');
 })
 
-document.getElementById('side-nav-contact').addEventListener('click', function(){
-    handleMobileContact();
-    handleSideMenu();
+document.getElementById('side-nav-contact').addEventListener('click', function(e){
+    e.preventDefault();
+    router.navigate('/contact');
 })
 
 var handleMobileBio = function() {
@@ -251,7 +281,11 @@ var renderPhotoGallery = function() {
 // Functions for loading all background images and making 
 
 function isMobileDevice() {
-    return (document.documentElement.clientWidth < 480);
+    if (document.documentElement.clientWidth < 480) {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 function loadImagesInSequence(images) {
@@ -282,3 +316,91 @@ if (!isMobileDevice()){
 }
 
 console.log("© 2019 Chris Homsey. All rights reserved.")
+
+// Router Config
+var root = '';
+var useHash = false; // Defaults to: false
+var hash = '#'; // Defaults to: '#'
+var router = new Navigo(root, useHash, hash);
+
+router
+.on({
+    '/bio': function() {
+        if (isMobileDevice()) {
+            console.log('mobile home!');
+            handleSideMenu();
+            router.navigate('/');
+        } else {
+            console.log('bio!');
+            handleOpenBio();
+        }
+    },
+    '/portfolio': function() {
+        if (isMobileDevice()) {
+            if (sideMenuOpen) {
+                handleSideMenu();
+            }
+            console.log('mobile portfolio!');
+            handleMobilePortfolio();
+        } else {
+            console.log('portfolio!');
+            handleOpenPortfolio();
+        }
+    },
+    '/portfolio/development': function() {
+        console.log('development portfolio!');
+        if (isMobileDevice()) {
+            console.log('mobile dev portfolio!');
+            handleMobilePortfolio();
+            handleDevelopmentPortfolioToggle();
+        } else {
+            handleOpenPortfolio();
+            handleDevelopmentPortfolioToggle();
+        }
+    },
+    '/portfolio/photography': function() {
+        console.log('photography portfolio!');
+        if (isMobileDevice()) {
+            console.log('mobile photo portfolio!');
+            handleMobilePortfolio();
+            handlePhotographyPortfolioToggle();
+        } else {
+            handleOpenPortfolio();
+            handlePhotographyPortfolioToggle();
+        }
+    },
+    '/contact': function() {
+        if (isMobileDevice()) {
+            if (sideMenuOpen) {
+                handleSideMenu();
+            }
+            console.log('mobile contact!');
+            handleMobileContact();
+        } else {
+            console.log('contact!');
+            handleOpenContact();
+        }
+    },
+    '/menu': function() {
+        if (isMobileDevice()) {
+            console.log('mobile menu!');
+            handleSideMenu();
+        } else {
+            router.navigate('/');
+        }
+    },
+    '*': function() {
+        if (isMobileDevice()) {
+            if (sideMenuOpen) {
+                handleSideMenu();
+            }
+            console.log('mobile home!');
+            handleMobileBio();
+        } else {
+            console.log('home!');
+            handleCloseBio();
+            handleOpenHome();
+        }
+    },
+})
+.resolve();
