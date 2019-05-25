@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "sass:compile": "node-sass --include-path sass ./public/css/style.scss ./public/css/style.css",
-    "sass:watch": "npm run sass:compile && node-sass ./public/css/style.scss -wo ./public/css/",
+    "gzip": "gzip -9 ./public/css/style.css && gzip -9 ./public/js/index.js",
+    "gunzip": "gunzip -9 ./public/css/style.css && gunzip -9 ./public/js/index.js",
+    "sass:compile": "node-sass --include-path sass ./public/css/style.scss ./public/css/style.css --output-style compressed",
+    "sass:watch": "npm run sass:compile && node-sass ./public/css/style.scss -wo ./public/css/ --output-style compressed",
     "deploy": "aws s3 sync public/ s3://www.chrishomsey.com"
   },
   "repository": {
