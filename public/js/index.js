@@ -11,7 +11,7 @@ function bgRotation() {
         } else {
             index++
         }
-        document.body.style.backgroundImage = "url('./img/bg-" + index + "@2x.jpg')";
+        document.body.style.backgroundImage = "url('/img/bg-" + index + "@2x.jpg')";
     },
     9000);
 }
@@ -263,7 +263,7 @@ var renderPhotoGallery = function() {
     for (var i = 0; i <= photoAmount; i++) {
 
         //Declares the thumbnailElements to be pushed
-        var urlTemplate = './img/photography/thumbnails/thumb-' + i + '.jpg';
+        var urlTemplate = '/img/photography/thumbnails/thumb-' + i + '.jpg';
         // creates a 
         var thumbnailElement = '<img class="photo" onClick="openModal(' + i + ')" src="'+urlTemplate+'"/>';
         
@@ -295,7 +295,7 @@ var calculateNext = function(i) {
 
 var openModal = function(i) {
     if (!isMobileDevice()) {
-        document.getElementById('modal-image').src = './img/photography/photography-' + i + '.jpg';
+        document.getElementById('modal-image').src = '/img/photography/photography-' + i + '.jpg';
         document.getElementById('modal-image').dataset.prev = calculatePrev(i);
         document.getElementById('modal-image').dataset.next = calculateNext(i);
         document.getElementById('modal').classList.add('open');
@@ -308,14 +308,14 @@ var handleCloseModal = function() {
 
 var handleModalPrev = function() {
     var previousImage = document.getElementById('modal-image').dataset.prev;
-    document.getElementById('modal-image').src = './img/photography/photography-' + previousImage + '.jpg';
+    document.getElementById('modal-image').src = '/img/photography/photography-' + previousImage + '.jpg';
     document.getElementById('modal-image').dataset.prev = calculatePrev(previousImage);
     document.getElementById('modal-image').dataset.next = calculateNext(previousImage);
 }
 
 var handleModalNext = function() {
     var nextImage = document.getElementById('modal-image').dataset.next;
-    document.getElementById('modal-image').src = './img/photography/photography-' + nextImage + '.jpg';
+    document.getElementById('modal-image').src = '/img/photography/photography-' + nextImage + '.jpg';
     document.getElementById('modal-image').dataset.prev = calculatePrev(nextImage);
     document.getElementById('modal-image').dataset.next = calculateNext(nextImage);
 }
@@ -371,11 +371,11 @@ function loadImagesInSequence(images) {
 if (!isMobileDevice()){
     minBioFade();
     loadImagesInSequence([
-        './img/bg-2@2x.jpg',
-        './img/bg-3@2x.jpg',
-        './img/bg-4@2x.jpg',
-        './img/bg-5@2x.jpg',
-        './img/bg-6@2x.jpg'
+        '/img/bg-2@2x.jpg',
+        '/img/bg-3@2x.jpg',
+        '/img/bg-4@2x.jpg',
+        '/img/bg-5@2x.jpg',
+        '/img/bg-6@2x.jpg'
     ]);
     bgRotation();
 }
