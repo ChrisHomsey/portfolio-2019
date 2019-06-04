@@ -1,13 +1,14 @@
 @import "node_modules/plumber-sass/plumber";
 
-
 // Color Variables
 $brand-blue: #2D9CDB;
 $brand-red: #CC5151;
 $brand-green: #6FCF97;
 $brand-white: #f2f2f2;
 $brand-grey: #828282;
-$brand-coral: #c8b2b2;
+// $brand-coral: #c8b2b2;
+$brand-coral: #ffdbdc;
+$brand-navy: #202A3B;
 
 $off-black: #2f2a2e;
 
@@ -32,6 +33,11 @@ $sm: 480px;
 html {
     font-size: 18px;
     box-sizing: border-box;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 body {
@@ -69,7 +75,7 @@ p{
 
 strong {
     font-weight: 600;
-    color: $brand-blue;
+    color: $brand-white;
 }
 
 h1{
@@ -84,7 +90,7 @@ h1{
         $leading-bottom: 5
     );
     @include breakpoint($md){
-        color: $brand-blue;
+        // color: $brand-blue;
     }
 }
 
@@ -111,7 +117,7 @@ h2 {
         );
     }
     @include breakpoint($md){
-        color: $brand-blue;
+        // color: $brand-blue;
         @include plumber(
             $grid-height: 0.5rem,
             $baseline: 0.158203,
@@ -124,12 +130,15 @@ h2 {
 }
 
 *::-webkit-scrollbar {
-    background-color: black;
+    background-color: $brand-navy;
     width: .2rem;
+    @include breakpoint($md) {
+        background-color: $brand-navy;
+    }
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: $brand-coral;
+    background-color: $brand-white;
     width: .2rem;
 }
 
@@ -154,31 +163,41 @@ button {
     &.green {
         color: $brand-green;
         border: 2px $brand-green solid;
-        background: linear-gradient(to bottom, black 50%, $brand-green 50%);
+        background: linear-gradient(to bottom, transparent 50%, $brand-green 50%);
         background-size: 100% 200%;
         background-position: top;
         transition: all .2s ease;
         &:hover {
             background-position: bottom;
             color: black;
+        }
+        @include breakpoint($md) {
+            &:hover {
+                color: $brand-navy;
+            }
         }
     }
     &.white {
         color: $brand-white;
         border: 2px $brand-white solid;
-        background: linear-gradient(to bottom, black 50%, $brand-white 50%);
+        background: linear-gradient(to bottom, transparent 50%, $brand-white 50%);
         background-size: 100% 200%;
         background-position: top;
         transition: all .2s ease;
         &:hover {
             background-position: bottom;
             color: black;
+        }
+        @include breakpoint($md) {
+            &:hover {
+                color: $brand-navy;
+            }
         }
     }
     &.red {
         color: $brand-red;
         border: 2px $brand-red solid;
-        background: linear-gradient(to bottom, black 50%, $brand-red 50%);
+        background: linear-gradient(to bottom, $brand-navy 50%, $brand-red 50%);
         background-size: 100% 200%;
         background-position: top;
         transition: all .2s ease;
@@ -186,17 +205,27 @@ button {
             background-position: bottom;
             color: black;
         }
+        @include breakpoint($md) {
+            &:hover {
+                color: $brand-navy;
+            }
+        }
     }
     &.grey {
         color: $brand-grey;
         border: 2px $brand-grey solid;
-        background: linear-gradient(to bottom, black 50%, $brand-grey 50%);
+        background: linear-gradient(to bottom, transparent 50%, $brand-grey 50%);
         background-size: 100% 200%;
         background-position: top;
         transition: all .2s ease;
         &:hover {
             background-position: bottom;
             color: black;
+        }
+        @include breakpoint($md) {
+            &:hover {
+                color: $brand-navy;
+            }
         }
     }
     &:focus {
@@ -210,10 +239,14 @@ button {
     }
 }
 
+.spacer {
+    height: 1rem;
+    width: 100%;
+}
+
 .triangle-container {
     position: relative;
-    margin: -3rem -1rem 3rem -1rem;
-    // border-top: 0.65rem solid rgba(255,255,255,0.9);
+    margin: -6rem -1rem 3rem -1rem;
     .triangle-left {
         position: absolute;
         width: 0;
@@ -271,6 +304,9 @@ button {
         border-width: 36px 50vw 50vw 50vw;
         border-color: rgba(113, 160, 211, 0.14) transparent transparent transparent;
     }
+    @include breakpoint($md) {
+        margin: 0;
+    }
 }
 
 
@@ -306,7 +342,7 @@ main {
     text-align: center;
     line-height: 2rem;
     // background fill effect
-    background: linear-gradient(to bottom, black 50%, $brand-white 50%);
+    background: linear-gradient(to bottom, transparent 50%, $brand-white 50%);
     background-size: 100% 200%;
     background-position: top;
     transition: all .2s ease;
@@ -314,24 +350,44 @@ main {
         background-position: bottom;
         color: black;
     }
+    @include breakpoint($md) {
+        background: linear-gradient(to bottom, $brand-navy 50%, $brand-white 50%);
+        background-size: 100% 205%;
+        background-position: top;
+        &:hover {
+            background-position: bottom;
+            color: $brand-navy;
+        }
+    }
 }
 
 #nav-bar {
     // XS breakpoint styling
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 84%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 84%);
     position:absolute;
     width: 4rem;
-    height: 3.8rem;
-    border-radius: 0% 0 0 50%;
+    height: 3rem;
+    // border-radius: 0% 0 0 25%;
     z-index: 5;
-    background-color: black;
-    opacity: 0.8;
+    background-color: $brand-navy;
     top: 0;
     right: 0;
     .nav-item {
         display: none;
     }
+    #open-side-nav{
+        position: absolute;
+        right: 1rem;
+        top: 0.5rem;
+        @include breakpoint($md){
+            display: none;
+        }
+    }
     // MD+ breakpoint styling
     @include breakpoint($md) {
+        clip-path: none;
+        -webkit-clip-path: none;
         position: fixed;
         right: 0px;
         top:2rem;
@@ -346,7 +402,7 @@ main {
             display: block;
             height: 4.5rem;
             padding: 0 .8rem;
-            border-top: 4px black solid;
+            border-top: 4px $brand-navy solid;
             text-decoration: none;
             font-family: 'Roboto', sans-serif;
             font-size: 1.5rem;
@@ -379,14 +435,6 @@ main {
     }
 }
 
-#open-side-nav{
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    @include breakpoint($md){
-        display: none;
-    }
-}
 
 #side-nav {
     height: 100vh;
@@ -397,7 +445,7 @@ main {
     left: 0;
     padding-top: 4rem;
     transition: 0.3s;
-    background-color: black;
+    background-color: $brand-navy;
     overflow-x: hidden;
     &.open {
         width: 100%;
@@ -425,7 +473,8 @@ main {
 
 // Only shows on mobile sizes (anything under $md breakpoint)
 #mobile-bio-img {
-    width: 100vw;
+    width: 100%;
+    min-height: 500px;
     height: 50vh;
     background-image: url('../img/bio.jpg');
     background-repeat: no-repeat;
@@ -440,18 +489,18 @@ main {
 #content-min {
     display: none;
     @include breakpoint($md){
-        box-sizing: border-box;
+        cursor: pointer;
         display: block;
         position: fixed;
         left: 0px;
         bottom: 4rem;
-        padding: 1.5rem 4rem 2.5rem 4rem;
-        width: 38rem;
+        padding: 1.5rem 2rem 2rem 3.5rem;
+        width: 34rem;
         height: 15rem;
-        background: rgba(0, 0, 0, 1);
-        transition: left 0.7s, background-color 2s;
+        background: rgba(32, 42, 59, 1);
+        transition: left 0.7s, background-color 1.3s;
         &.faded {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(32, 42, 59, 0.5);
         }
         &.hidden {
             display: none;
@@ -460,7 +509,7 @@ main {
             left: -38rem;
         }
         &:hover {
-            background: rgba(0,0,0,1);
+            background: rgba(32, 42, 59, 1);
         }
         .bio-img {
             position: relative;
@@ -491,15 +540,18 @@ main {
 
 #content-max {
     // xs breakpoint styling
-    box-sizing: border-box;
     width: 100%;
-    background: black;
-    padding: 3rem 1rem 0.5rem 1rem;
+    clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
+    background: rgba(0,0,0,0.75);
+    background-color: black;
+    padding: 6rem 1rem 0.5rem 1rem;
+    margin-top: -3.5rem;
     .bio-col-left{
        display: none;
     }
     .bio-col-right {
-        margin-top: 2rem;
+        margin-top: 5rem;
     }
     #bio-close-button{
         display: none;
@@ -509,14 +561,17 @@ main {
     }
     // md+ breakpoint styling
     @include breakpoint($md) {
+        clip-path: none;
+        -webkit-clip-path: none;
         display: block;
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 38rem;
+        margin-top: 0;
         padding: 4.5rem 0 0rem 4.5rem;
-        background-color: black;
+        background-color: $brand-navy;
         overflow-y: hidden;
         transition: left 0.7s;
         &.closed {
@@ -527,6 +582,9 @@ main {
         }
         #bio-close-button{
             display: block;
+        }
+        .triangle-container {
+            margin: 0;
         }
         .bio-col-left {
             display: block;
@@ -548,7 +606,7 @@ main {
                 padding: 0;
                 .social-item {
                     display: block;
-                    height: 2.5rem;
+                    height: 3rem;
                     padding: .25rem 1rem;
                     font-family: 'Roboto', sans-serif;
                     font-size: 1.111rem;
@@ -556,7 +614,7 @@ main {
                     color: $brand-white;
                     text-align: right;
                     text-decoration: none;
-                    border-right: 3px black solid;
+                    border-right: 3px $brand-navy solid;
                     &:hover {
                         border-right: 3px $brand-white solid;
                     }
@@ -565,28 +623,33 @@ main {
         }
         .bio-col-right {
             float: right;
-            width: 15rem;
+            width: 18.5rem;
             height: calc(100% - 1rem);
             margin-top: 0;
+            margin-right: 1.8rem;
             padding-top: 0rem;
             padding-right: 3.5rem;
             overflow-y: scroll;
-            
         }
     }
 }
 
 #portfolio {
-    box-sizing: border-box;
+    clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
     background: black;
     width: 100%;
-    padding: 3rem 1rem 0.5rem 1rem;
+    padding: 6rem 1rem 0.5rem 1rem;
+    margin-top: -3.5rem;
     &.mobile-hidden{
         display: none;
     }
     // md+ breakpoint styling
     @include breakpoint($md){
+        clip-path: none;
+        -webkit-clip-path: none;
         display: block;
+        background: $brand-navy;
         position: relative;
         margin: 0 auto;
         padding: 4.5rem 1rem;
@@ -652,7 +715,6 @@ main {
     margin-top: 1rem;
 
     .dev-item {
-        box-sizing: border-box;
         width: 100%;
     }
     .dev-item-img {
@@ -741,10 +803,12 @@ main {
 }
 
 #contact {
-    box-sizing: border-box;
+    clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 2.5rem, 100% 1000%, 0 100%);
     background: black;
     width: 100%;
-    padding: 3rem 1rem;
+    padding: 6rem 1rem;
+    margin-top: -3.5rem;
     #contact-methods {
         display: flex;
         flex-direction: row;
@@ -777,14 +841,17 @@ main {
         display: none;
     }
     @include breakpoint($md) {
+        clip-path: none;
+        -webkit-clip-path: none;
+        background: rgba(32,45,59, 1);
         display: block;
         position: absolute;
         right: 0rem;
         bottom: 9rem;
         width: 25rem;
         height: 16rem;
-        padding: 1.5rem 3.5rem;
-        background: black;
+        padding: 1rem 3.5rem 1rem 2rem;
+        margin: 0;
         transition: right .7s;
         &.mobile-hidden {
             display: block;
@@ -797,18 +864,19 @@ main {
 
 footer {
     position: relative;
-    padding: 0 1rem;
-    background: black;
+    padding: 1rem 1rem 0.5rem 1rem;
+    background: $brand-navy;
     color: white;
     font-size: 1rem;
     p {
         font-size: 1rem;
+        margin: 0;
     }
     @include breakpoint($md) {
         position: absolute;
         right: 0;
         bottom: 0;
-        width: 14rem;
+        width: 16rem;
         padding: 0rem 1rem;
         opacity: 0.45;
         text-align: right;
@@ -843,7 +911,7 @@ footer {
     transition: opacity 1s;
     #modal-image {
         max-width: calc(100vw - 150px);
-        max-height: calc(100vh - 9rem);
+        max-height: calc(100vh - 9rem - 4px);
     }
     &.open {
         display: block;
@@ -887,3 +955,4 @@ footer {
     top: -1rem;
     left: -1rem;
 }
+

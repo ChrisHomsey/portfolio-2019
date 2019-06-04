@@ -7,10 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "gzip": "gzip -9 ./public/css/style.css && gzip -9 ./public/js/index.js",
+    "gzip:rename": "mv ./public/css/style.css.gz ./public/css/style.css && mv ./public/js/index.js.gz ./public/js/index.js",
+    "gunzip:rename": "mv ./public/css/style.css ./public/css/style.css.gz && mv ./public/js/index.js ./public/js/index.js.gz",
     "gunzip": "gunzip -9 ./public/css/style.css && gunzip -9 ./public/js/index.js",
     "sass:compile": "node-sass --include-path sass ./public/css/style.scss ./public/css/style.css --output-style compressed",
     "sass:watch": "npm run sass:compile && node-sass ./public/css/style.scss -wo ./public/css/ --output-style compressed",
-    "deploy": "aws s3 sync public/ s3://www.chrishomsey.com"
+    "deploy": "npm run gzip && npm run gzip:rename && aws s3 sync public/ s3://www.chrishomsey.com && npm run gunzip:rename && npm run gunzip"
   },
   "repository": {
     "type": "git",

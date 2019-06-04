@@ -1,7 +1,14 @@
-// Initialize
+// Initialize variables
 var sideMenuOpen = false;
 var portfolioHasBeenLoaded = false;
+var fromMaxBio = false;
+var fromMinBio = false;
+var loadedBgImages = [];
 
+// Declare the amount of photos in the photoGallery
+var photoAmount = 34;
+
+// Handles the rotation of the 
 function bgRotation() {
     if (isMobileDevice()) return null;
     var index = 2;
@@ -16,11 +23,39 @@ function bgRotation() {
     9000);
 }
 
-function minBioFade() {
-    setTimeout(function(){
+
+// START INACTIVITY TIMER 
+var timerId;
+var isInactive;
+
+function startInactivityTimer() {
+    var timerId = setTimeout(function(){
+        isInactive = true;
         document.getElementById('content-min').classList.add('faded');
-    }, 100);
+    }, 2000);
 }
+
+function resetTimer() {
+    if(isInactive) {
+        window.clearTimeout(timerId);
+        isInactive = false;
+        goActive();
+    }
+}
+
+function goActive() {
+    document.getElementById('content-min').classList.remove('faded');
+    startInactivityTimer();
+}
+
+if (!isMobileDevice()){
+    document.addEventListener("mousemove", resetTimer, false);
+    startInactivityTimer();
+}
+
+// END INACTIVITY TIMER
+
+// FUNCTION - checks to make sure that animations are done before starting a new animation
 
 function transitionEndEventName () {
     var i,
@@ -41,10 +76,12 @@ function transitionEndEventName () {
 }
 var transitionEnd = transitionEndEventName();
 
+// END FUNCTION
+
 
 // Nav Menu
 
-// Mobile only - open side menu
+// Mobile event listeners - open side menu
 
 document.getElementById('open-side-nav').addEventListener('click', function(e){
     e.preventDefault();
@@ -86,12 +123,15 @@ document.getElementById('toggle-portfolio-button').addEventListener('click', fun
 })
     
 // When the content-more button is pressed, the small bio is hidden and the large bio is shown
-document.getElementById('content-more').addEventListener('click', function (e) {
+document.getElementById('content-min').addEventListener('click', function (e) {
     e.preventDefault();
+    fromMinBio = true;
     router.navigate('/bio');
 });
 
-document.getElementById('bio-close-button').addEventListener('click', function() {
+document.getElementById('bio-close-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    fromMaxBio = true;
     router.navigate('/');
 })
 
@@ -112,10 +152,19 @@ var handleOpenHome = function() {
 // Handles the opening of the bio
 var handleOpenBio = function() {
     var minBio = document.getElementById('content-min');
+    document.getElementById('portfolio').classList.add('closed');
+    document.getElementById('contact').classList.add('closed');
+
     minBio.classList.add('closed');
     
-    // Wait until this transition is done, then call openMaxBio
-    minBio.addEventListener(transitionEnd, openMaxBio, false);
+    // Wait until this transition is done, then call openMaxBio (only if function was called from content-more button)
+    if (fromMinBio) {
+        fromMinBio = false;
+        minBio.addEventListener(transitionEnd, openMaxBio, false);
+    } else {
+        openMaxBio();
+    }
+
 }
 
 // Handles the closing of the bio
@@ -123,8 +172,13 @@ var handleCloseBio = function() {
     var maxBio = document.getElementById('content-max');
     maxBio.classList.add('closed');
     
-    // Wait until this transition is done, then call openMinBio
-    maxBio.addEventListener(transitionEnd, openMinBio, false);
+    // Wait until this transition is done, then call openMinBio (only if the close button is hit on max-content)
+    if (fromMaxBio) {
+        fromMaxBio = false;
+        maxBio.addEventListener(transitionEnd, openMinBio, false);
+    } else {
+        handleOpenHome();
+    }
 }
 
 // Handles the opening of the portfolio section
@@ -250,9 +304,6 @@ var handleMobileContact = function() {
     document.getElementById('contact').classList.remove('mobile-hidden');
 }
 
-// Initialize PhotoGallery Variables and Functions
-var photoAmount = 34;
-
 // Function to render photography thumbnails in a masonry fashion
 var renderPhotoGallery = function() {
 
@@ -325,13 +376,15 @@ document.getElementById('modal-close').addEventListener('click', function() {
 });
 
 document.addEventListener('keyup', function(e) {
-    console.log(e.keyCode)
+    // if esc
     if (e.keyCode === 27) {
         handleCloseModal();
     }
+    // if left
     if (e.keyCode === 37 && document.getElementById('modal').classList.contains('open')) {
         handleModalPrev();
     }
+    // if right
     if (e.keyCode === 39 && document.getElementById('modal').classList.contains('open')) {
         handleModalNext();
     }
@@ -353,30 +406,35 @@ function isMobileDevice() {
     }
 };
 
-function loadImagesInSequence(images) {
-    if (!images.length) {
-      return;
-    }
+// function loadImagesInSequence(images) {
+//     if (!images.length) {
+//       return loadedBgImages;
+//     }
   
-    var img = new Image(),
-        url = images.shift();
+//     var img = new Image(),
+//         url = images.shift();
   
-    img.onload = function(){
-        loadImagesInSequence(images);
-    };
-    img.src = url;
-}
+//     img.onload = function(){
+//         console.log(img);
+//         loadedBgImages.push(img);
+//         loadImagesInSequence(images);
+//     };
+//     img.src = url;
+// }
 
 // Tablet/Desktop functions for fading the content-min bio and loading bg images in order
-if (!isMobileDevice()){
-    minBioFade();
-    loadImagesInSequence([
-        '/img/bg-2@2x.jpg',
-        '/img/bg-3@2x.jpg',
-        '/img/bg-4@2x.jpg',
-        '/img/bg-5@2x.jpg',
-        '/img/bg-6@2x.jpg'
-    ]);
+// if (!isMobileDevice()){
+    //     loadImagesInSequence([
+        //         '/img/bg-2@2x.jpg',
+        //         '/img/bg-3@2x.jpg',
+        //         '/img/bg-4@2x.jpg',
+        //         '/img/bg-5@2x.jpg',
+        //         '/img/bg-6@2x.jpg'
+        //     ]);
+        // }
+
+if (!isMobileDevice()) {
+    // minBioFade();
     bgRotation();
 }
 
@@ -451,7 +509,6 @@ router
             handleMobileBio();
         } else {
             handleCloseBio();
-            handleOpenHome();
         }
     },
 })
