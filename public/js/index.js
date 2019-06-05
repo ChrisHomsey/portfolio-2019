@@ -8,17 +8,36 @@ var loadedBgImages = [];
 // Declare the amount of photos in the photoGallery
 var photoAmount = 34;
 
-// Handles the rotation of the 
-function bgRotation() {
+// Function for checking whether the user device has a mobile-sized viewport
+function isMobileDevice() {
+    if (document.documentElement.clientWidth < 480) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+// Handles the rotation of the background images
+function bgRotation(bgImages) {
     if (isMobileDevice()) return null;
-    var index = 2;
+    var bgContainer = document.body.querySelector('#bg-container');
+    var index = 0;
+    // Every 9 seconds, change the background image element- old one fades out, and then is removed
     setInterval(function(){
-        if (index >= 6) {
-            index = 1;
+        // Recursive looping through 6 images
+        if (index >= bgImages.length - 1) {
+            index = 0;
         } else {
             index++
         }
-        document.body.style.backgroundImage = "url('/img/bg-" + index + "@2x.jpg')";
+        var newImage = bgImages[index];
+        newImage.classList.remove('hidden');
+        var oldImage = document.body.querySelector('#bg');
+        bgContainer.prepend(newImage);
+        oldImage.classList.add('hidden');
+        setTimeout(function() {
+            oldImage.remove();
+        }, 1700);
     },
     9000);
 }
@@ -397,45 +416,33 @@ document.getElementById('modal-next').addEventListener('click', function() {
     handleModalNext();
 })
 
-// Function for checking whether the user device has a mobile-sized viewport
-function isMobileDevice() {
-    if (document.documentElement.clientWidth < 480) {
-        return true;
-    } else {
-        return false;
+function loadImagesInSequence(images) {
+    if (!images.length) {
+      return bgRotation(loadedBgImages);
     }
-};
-
-// function loadImagesInSequence(images) {
-//     if (!images.length) {
-//       return loadedBgImages;
-//     }
   
-//     var img = new Image(),
-//         url = images.shift();
+    var img = new Image(),
+        url = images.shift();
+        img.classList.add('background-img');
+        img.id = "bg";
   
-//     img.onload = function(){
-//         console.log(img);
-//         loadedBgImages.push(img);
-//         loadImagesInSequence(images);
-//     };
-//     img.src = url;
-// }
+    img.onload = function(){
+        loadedBgImages.push(img);
+        loadImagesInSequence(images);
+    };
+    img.src = url;
+}
 
 // Tablet/Desktop functions for fading the content-min bio and loading bg images in order
-// if (!isMobileDevice()){
-    //     loadImagesInSequence([
-        //         '/img/bg-2@2x.jpg',
-        //         '/img/bg-3@2x.jpg',
-        //         '/img/bg-4@2x.jpg',
-        //         '/img/bg-5@2x.jpg',
-        //         '/img/bg-6@2x.jpg'
-        //     ]);
-        // }
-
-if (!isMobileDevice()) {
-    // minBioFade();
-    bgRotation();
+if (!isMobileDevice()){
+    loadImagesInSequence([
+        '/img/bg-1@2x.jpg',
+        '/img/bg-2@2x.jpg',
+        '/img/bg-3@2x.jpg',
+        '/img/bg-4@2x.jpg',
+        '/img/bg-5@2x.jpg',
+        '/img/bg-6@2x.jpg'
+    ]);
 }
 
 console.log("© 2019 Chris Homsey. All rights reserved.");

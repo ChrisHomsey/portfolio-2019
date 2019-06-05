@@ -20,7 +20,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#202A3B">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120979421-1"></script>
@@ -44,6 +44,23 @@
     
 </head>
 <body id="body">
+
+    <div id="bg-container">
+        <!-- Background image elements are loaded here -->
+        <script>
+            // Load the first background picture on non-mobile devices
+            if (document.documentElement.clientWidth > 480) {
+                var bgContainer = document.body.querySelector('#bg-container');
+                var firstImage = new Image();
+                firstImage.src = '/img/bg-1@2x.jpg';
+                firstImage.id = 'bg';
+                firstImage.classList.add('background-img');
+                firstImage.onload = function() {
+                    bgContainer.prepend(firstImage);
+                };
+            }
+        </script>
+    </div>
 
     <header>
         <nav id="nav-bar">

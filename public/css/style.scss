@@ -49,11 +49,6 @@ body {
     width: 100%;
     transition: background-image ease-in 1s;
     @include breakpoint($md){
-        background-image: url('../img/bg-1@2x.jpg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-attachment: fixed;
-        background-size: cover;
         height: 100vh;
         width: 100vw;
     }
@@ -130,16 +125,20 @@ h2 {
 }
 
 *::-webkit-scrollbar {
-    background-color: $brand-navy;
-    width: .2rem;
     @include breakpoint($md) {
         background-color: $brand-navy;
+        width: .2rem;
+        @include breakpoint($md) {
+            background-color: $brand-navy;
+        }
     }
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: $brand-white;
-    width: .2rem;
+    @include breakpoint($md) {
+        background-color: $brand-white;
+        width: .2rem;
+    }
 }
 
 button {
@@ -197,7 +196,7 @@ button {
     &.red {
         color: $brand-red;
         border: 2px $brand-red solid;
-        background: linear-gradient(to bottom, $brand-navy 50%, $brand-red 50%);
+        background: linear-gradient(to bottom, transparent 50%, $brand-red 50%);
         background-size: 100% 200%;
         background-position: top;
         transition: all .2s ease;
@@ -326,6 +325,29 @@ main {
     }
 }
 
+#bg-contaner {
+    display: none;
+    @include breakpoint($md) {
+        display: block;
+    }
+}
+
+.background-img {
+    display:none;
+    @include breakpoint($md) {
+        display: block;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        pointer-events: none;
+        transition: opacity 1.5s;
+        &.hidden {
+            opacity: 0;
+        }
+    }
+}
+
 .close-button {
     position: absolute;
     top: 1rem;
@@ -364,9 +386,9 @@ main {
 #nav-bar {
     // XS breakpoint styling
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 84%);
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 84%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 0.5rem);
     position:absolute;
-    width: 4rem;
+    width: 100%;
     height: 3rem;
     // border-radius: 0% 0 0 25%;
     z-index: 5;
