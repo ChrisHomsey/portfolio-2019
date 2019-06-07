@@ -424,6 +424,7 @@ function loadImagesInSequence(images) {
     var img = new Image(),
         url = images.shift();
         img.classList.add('background-img');
+        img.alt = 'Photography and Design by Chris Homsey';
         img.id = "bg";
   
     img.onload = function(){
