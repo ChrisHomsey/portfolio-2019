@@ -104,14 +104,19 @@ var transitionEnd = transitionEndEventName();
 
 document.getElementById('open-side-nav').addEventListener('click', function(e){
     e.preventDefault();
-    router.navigate('/menu');
+    if (!sideMenuOpen) {
+        router.navigate('/menu');
+    } else {
+        handleSideMenu();
+        window.history.back();
+    }
 })
 
-document.getElementById('close-side-nav').addEventListener('click', function(e){
-    e.preventDefault();
-    handleSideMenu();
-    window.history.back();
-})
+// document.getElementById('close-side-nav').addEventListener('click', function(e){
+//     e.preventDefault();
+//     handleSideMenu();
+//     window.history.back();
+// })
 
 // if the user selects home -> set it to active, open #content-min and close the other divs
 document.getElementById('nav-home').addEventListener('click', function(e) {

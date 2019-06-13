@@ -78,17 +78,17 @@
         </nav>
 
         <div id="side-nav">
-            <div class="close-button" id="close-side-nav" aria-label="Close the navigation menu.">X</div>
+            <!-- <div class="close-button" id="close-side-nav" aria-label="Close the navigation menu.">X</div> -->
             <a id="side-nav-home" class="item" href="/">Home</a>    
             <a id="side-nav-portfolio" class="item" href="/portfolio">Portfolio</a>   
             <a id="side-nav-contact" class="item" href="/contact">Contact</a>
         </div>
 
+        <div id="mobile-bio-img">
     </header>
 
     <main id="main">
 
-        <div id="mobile-bio-img">
 
         </div>
 
@@ -96,14 +96,13 @@
             <div class="bio-img" alt="Chris Homsey - Front end Engineer"></div>
             <div class="content-min-text">
                 <h2>Chris Homsey</h2>
-                <p>I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.</p>
+                <h3><i class="fas fa-code"></i> Professional developer.</h3>
+                <h3 class="subheader"><i class="fas fa-camera"></i> Amateur photographer.</h3>
             </div>
-            <div id="content-more">
-                ...
-            </div>
+            <span id="content-more">Click to learn more . . .</span>
         </div>
 
-        <div id="content-max" class="closed">
+        <section id="content-max" class="closed">
 
             <div class="close-button" id="bio-close-button" aria-label="Close the bio section">X</div>
 
@@ -121,20 +120,30 @@
                 
 
                 <h2>Chris Homsey</h2>
+
+                <h3 class="subheader"><i class="fas fa-map-marker-alt"></i> Grand Rapids, MI</h3>
+
                 <p>
-                    I am a software engineer, designer, and photographer that loves the challenge of adding value to every project I touch.
+                    Hello! My name is Chris. I’m a professional web/software developer, amateur photographer, and an asset to anyone looking to learn more about <em>building, automating, and marketing</em> crucial parts of their business for the digital world.
                 </p>
                 
                 <p>
-                    My background is rooted in IT, where I served as the Professional Services Engineer. I worked with consultants to indentify technical challenges our clients were facing and engineer solutions using vendor software.
+                    My background is rooted in Sales Engineering in the IT industry. For years, I have worked with technological consultants to identify our clients’ technical challenges and engineer solutions using various technologies- both hardware and software.
+                </p>
+                
+                <h3><i class="fas fa-code"></i> Leveling up</h3>
+
+                <p>
+                    Recognizing that both data and visual elements play a huge part in the digital world, I decided to move into the web/software space as a <strong>fullstack developer</strong>.
                 </p>
                 
                 <p>
-                    I’ve always been both visually and data inclined, so I decided to move into the web/software space as a fullstack developer. I’ve taken my talent in R&D to learn about a ton of cutting edge web technologies such as <strong>Node, React, MongoDB, and the AWS platform.</strong>
+                    After graduating from <strong>Case Western Reserve University’s Coding Bootcamp</strong> in 2018, I found that my #1 priority would be to become billable ASAP for prospective employers— so I’ve studied web fundamentals, as well as cutting edge frameworks and platforms at an intense pace!
                 </p>
-                
+
+                <h3>Looking for a Node, React, GraphQL, and AWS developer?</h3>
                 <p>
-                    I’m currently open to new opportunities where I can grow as a developer.
+                    Feel free to contact me via social media, or at <a href="tel:12166888713">216-688-8713</a>!
                 </p>
                 
                 <button class="green" id="toggle-resume-button" aria-label="Click here to download Chris Homsey's résumé in PDF format." onclick="location.href='https://s3.us-east-2.amazonaws.com/www.chrishomsey.com/docs/Chris+Homsey+-+Resume.pdf';">résumé</button>
@@ -142,23 +151,23 @@
                 
             </div>
             
-            <div class="bio-col-left">
+            <aside class="bio-col-left">
 
                     <div class="bio-img" alt="Chris Homsey - UI Engineer"></div>
 
-                    <div class="social-list">
-                        <a href="https://www.linkedin.com/in/chris-homsey/" target="new_tab" class="social-item" aria-label="Visit Chris Homsey's LinkedIn profile.">LinkedIn</a>
-                        <a href="https://github.com/ChrisHomsey" target="new_tab" class="social-item" aria-label="Visit Chris Homsey's Github profile.">Github</a>
-                        <a href="https://www.instagram.com/homseydrums" target="new_tab" class="social-item" aria-label="Visit Chris Homsey's Instagram account">Insta</a>
+                    <nav class="social-links">
+                        <a href="https://www.linkedin.com/in/chris-homsey/" target="_blank" rel="noopener" class="social-item" aria-label="Visit Chris Homsey's LinkedIn profile.">LinkedIn</a>
+                        <a href="https://github.com/ChrisHomsey" target="_blank" rel="noopener" class="social-item" aria-label="Visit Chris Homsey's GitHub profile.">GitHub</a>
+                        <a href="https://www.instagram.com/homseydrums" target="_blank" rel="noopener" class="social-item" aria-label="Visit Chris Homsey's Instagram account">Insta</a>
                         <a href="mailto:chomsey@protonmail.com" class="social-item" aria-label="Email Chris Homsey at chomsey@protonmail.com">@</a>
-                    </div>
+                    </nav>
 
-            </div>
+            </aside>
 
-        </div>
+        </section>
 
         
-        <div id="portfolio" class="closed mobile-hidden">
+        <section id="portfolio" class="closed mobile-hidden">
 
             <div class="triangle-container">
                 <div class="triangle-left mobile-only"></div>
@@ -192,22 +201,53 @@
                         <h2 class="subheader">Web/Software</h2>
             
                         <p>
-                            I’m constantly building new projects to learn everything from UI, DevOps, and RESTful APIs.
+                            I’m constantly building new projects to learn everything from UI, DevOps, and RESTful/GraphQL APIs. Professionally, I work with clients to address their current business goals and pinpoint areas where technology could offer them a competitive advantage in their industry.                             
                         </p>
-    
+                        <p>
+                            While I tend to choose modern javascript technologies like React and Node in my personal projects, I'm always conscious of the need to use tools that are appropriate for client budgets and business strategies— often this means leveraging a CMS like Wordpress or a SaaS e-commerce platform like Big Commerce.
+                        </p>
                     </div>
     
-                    
                 </div>
                 
                 <div class="dev-grid">
+
+                    <div class="dev-item dev-item-img" style="background-image: url(../img/williams-and-beck-website.jpg);">
                     
-                    <div class="dev-item dev-item-img" id="cs-proj">
+                        <div class="dev-item-inner">
+                            
+                            <div class="dev-buttons">
+                                <button class="white" aria-label="Click to view the Williams & Beck website developed by Chris Homsey" onclick="location.href='https://www.williamsandbeck.com';">View Site</button>
+                            </div>
+                            
+                        </div>
+
+
+                    </div>
+                    
+                    <div class="dev-item">
+                        
+                        <h2 class="subheader coral">Williams & Beck, Inc</h2>
+                        <h3 class="subheader">Consulting Engineers</h3>
+                        
+                        <p>
+                            Williams & Beck is a Professional Enginnering firm located in West Michigan that specializes in assisting clients with civil, forensic, agricultural, and environmental projects.
+                        </p>
+                        
+                        <p>
+                            The website runs on the <strong>Wordpress CMS</strong>. The main goal of this project was beef up W&B's online presence— beginning with a revamp of their existing site with a new design, along with SEO and performance optimization. 
+                        </p>
+                        <p>
+                            Our continued marketing strategy with Williams & Beck consists of blogging, LinkedIn presence, and an email newsletter to keep their clients informed.
+                        </p>
+                    </div>
+                    
+                    <div class="dev-item dev-item-img" style="background-image: url(../img/culture-stack.jpg);">
                         
                         <div class="dev-item-inner">
                             
                             <div class="dev-buttons">
-                                <button class="white" aria-label="Click to view the Github repository of the Culture Stack App developed by Chris Homsey" onclick="location.href='https://github.com/jjdaurora/culture-stack';">Github</button>
+                                <button class="white" aria-label="Click to view the GitHub repository of the Culture Stack App developed by Chris Homsey" onclick="location.href='https://github.com/jjdaurora/culture-stack';">GitHub</button>
                                 <button class="white" aria-label="Click to view the Culture Stack App developed by Chris Homsey" onclick="location.href='https://culture-stack.herokuapp.com';">App</button>
                             </div>
                             
@@ -218,7 +258,7 @@
                     
                     <div class="dev-item">
                         
-                        <h2 class="subheader">Culture-Stack</h2>
+                        <h2 class="subheader coral">Culture-Stack</h2>
                         
                         <p>
                             Culture Stack is a social media app that allows users to share their creative works and get feedback from other artists. We have created a platform for photographers to upload, categorize, and describe any challenges they are having with a particular process.
@@ -230,12 +270,12 @@
                         
                     </div>
                     
-                    <div class="dev-item dev-item-img" id="nyt-proj">
+                    <div class="dev-item dev-item-img" style="background-image: url(../img/nyt-search.png);">
 
                         <div class="dev-item-inner">
 
                             <div class="dev-buttons">
-                                <button class="white" aria-label="Click to view the Github repository of the New York Times Search App developed by Chris Homsey" onclick="location.href='https://github.com/chrishomsey/nyt-search';">Github</button>
+                                <button class="white" aria-label="Click to view the GitHub repository of the New York Times Search App developed by Chris Homsey" onclick="location.href='https://github.com/chrishomsey/nyt-search';">GitHub</button>
                                 <button class="white" aria-label="Click to view the New York Times Search App developed by Chris Homsey" onclick="location.href='https://nyt-search-reactjs.herokuapp.com';">App</button>
                             </div>
                         
@@ -244,7 +284,7 @@
                     </div>
                     
                     <div class="dev-item">
-                        <h2 class="subheader">NYT-Search</h2>
+                        <h2 class="subheader coral">NYT-Search</h2>
 
                         <p>
                             This was a simple app built to allow the user to search articles from the New York Times and save their favorite articles. This could be useful
@@ -256,12 +296,12 @@
 
                     </div>
 
-                    <div class="dev-item dev-item-img" id="mh-proj">
+                    <div class="dev-item dev-item-img" style="background-image: url(../img/me-hungry.jpg);">
 
                         <div class="dev-item-inner">
 
                             <div class="dev-buttons">
-                                <button class="white" aria-label="Click to view the Github repository of the Me Hungry App developed by Chris Homsey" onclick="location.href='https://github.com/chrishomsey/me-hungry';">Github</button>
+                                <button class="white" aria-label="Click to view the GitHub repository of the Me Hungry App developed by Chris Homsey" onclick="location.href='https://github.com/chrishomsey/me-hungry';">GitHub</button>
                                 <button class="white" aria-label="Click to view the Me Hungry App developed by Chris Homsey" onclick="location.href='https://chrishomsey.github.io/me-hungry';">App</button>
                             </div>
 
@@ -270,7 +310,7 @@
                     </div>
 
                     <div class="dev-item">
-                        <h2 class="subheader">MeHungry</h2>
+                        <h2 class="subheader coral">MeHungry</h2>
                         <p>
                             MeHungry is a small project that I worked on with a partner in late 2017. The idea was to build an app that suggests local restaraunts, cafés, and bars to the user based on mood and preference. JJ worked on the front-end design while I worked on the API calls and javascript logic.
                         </p>
@@ -301,7 +341,7 @@
                         <h2 class="subheader">Photography</h2>
             
                         <p>
-                            One of my favorite things to do is travel photography. I've had the opportunity to travel to places like Asia and South America and capture some of the greatest memories of my life.
+                            One of my favorite things to do as an amatuer photographer is travel. I've had the opportunity to travel to places like Eastern Asia and South America and capture some of the greatest memories of my life.                            
                         </p>
         
                     </div>
@@ -322,10 +362,10 @@
     
             </div>
 
-        </div>
+        </section>
 
 
-        <div id="contact" class="closed mobile-hidden">
+        <section id="contact" class="closed mobile-hidden">
 
             <div class="triangle-container">
                 <div class="triangle-left mobile-only"></div>
@@ -362,7 +402,7 @@
                 </a>
 
             </div>
-        </div>
+        </section>
 
         <footer>
             <p>© 2019 Chris Homsey. All rights reserved.</p>
@@ -395,18 +435,7 @@
         fontAwesome.integrity = 'sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU';
         fontAwesome.crossOrigin = 'anonymous';
 
-        var gFontRoboto = document.createElement('link');
-        gFontRoboto.rel = 'stylesheet';
-        gFontRoboto.href = 'https://fonts.googleapis.com/css?family=Roboto:400,600';
-
-        var gFontRasa = document.createElement('link');
-        gFontRasa.rel = 'stylesheet';
-        gFontRasa.href = 'https://fonts.googleapis.com/css?family=Rasa:400,600';
-  
-        // Append link elements to HTML head 
         head.appendChild(fontAwesome);
-        head.appendChild(gFontRoboto);
-        head.appendChild(gFontRasa);
     </script>
 </body>
 </html>
