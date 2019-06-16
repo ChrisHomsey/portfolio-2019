@@ -75,7 +75,7 @@ if (!isMobileDevice()){
 // END INACTIVITY TIMER
 
 // FUNCTION - checks to make sure that animations are done before starting a new animation
-
+// This is used by 
 function transitionEndEventName () {
     var i,
         undefined,
@@ -97,9 +97,7 @@ var transitionEnd = transitionEndEventName();
 
 // END FUNCTION
 
-
 // Nav Menu
-
 // Mobile event listeners - open side menu
 
 document.getElementById('open-side-nav').addEventListener('click', function(e){
@@ -111,12 +109,6 @@ document.getElementById('open-side-nav').addEventListener('click', function(e){
         window.history.back();
     }
 })
-
-// document.getElementById('close-side-nav').addEventListener('click', function(e){
-//     e.preventDefault();
-//     handleSideMenu();
-//     window.history.back();
-// })
 
 // if the user selects home -> set it to active, open #content-min and close the other divs
 document.getElementById('nav-home').addEventListener('click', function(e) {
